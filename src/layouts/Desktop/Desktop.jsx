@@ -1,7 +1,9 @@
+import Dashboard from "../../pages/Dashboard/Dashboard";
+
 const Desktop = () => {
     return (
         <div>
-            for large device
+            <Dashboard></Dashboard>
         </div>
     );
 };
