@@ -1,14 +1,14 @@
 import { Toaster } from "react-hot-toast";
-import Desktop from "../Desktop/Desktop";
+import Developer from "../../pages/Dashboard/Developer/Developer";
+import { Outlet } from "react-router-dom";
 
 
 const Main = () => {
+    const loading = false;
     return (
         <div>
-            <div>
-                <Desktop></Desktop>
-            </div>
-            
+            {loading && <Developer></Developer>}
+            <Outlet></Outlet>
             {/* for showing react hot toast in the overall project */}
             <Toaster />
         </div>

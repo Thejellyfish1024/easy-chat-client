@@ -1,7 +1,16 @@
+import useAuth from "../../hooks/useAuth";
+import Desktop from "../../layouts/Desktop/Desktop";
+import Login from "../Login/Login";
+
 const Home = () => {
+    const { user } = useAuth();
     return (
         <div>
-            this is chat home
+            {user ?
+                <Desktop></Desktop>
+                :
+                <Login></Login>
+            }
         </div>
     );
 };

@@ -3,8 +3,8 @@ import { FaUser } from "react-icons/fa";
 
 const SingleChat = ({ chat }) => {
     return (
-        <div 
-        className={`w-full p-4 rounded-xl flex gap-4 items-center cursor-context-menu
+        <div role="button"
+        className={`w-full p-4 rounded-xl flex gap-4 items-center 
          ${chat?.active ? "bg-blue-500 text-gray-100" : "bg-gray-200 hover:bg-blue-300"}`}>
             <p className="bg-gray-300 w-fit h-fit p-4 rounded-full text-white">
                 <FaUser className="text-2xl"></FaUser>

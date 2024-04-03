@@ -21,6 +21,7 @@ const Dashboard = () => {
             } */}
                 <ChatBox></ChatBox>
             </div>
+            
         </div>
     );
 };
