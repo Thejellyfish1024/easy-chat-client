@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { BsChatRightFill } from "react-icons/bs";
 import { IoMdStar } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 
 
-const Sidebar = () => {
+const Sidebar = ({setOpenUserInfo}) => {
     return (
         <div className="w-full h-full p-6 flex flex-col justify-between bg-[#001d3d] text-gray-400 rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
@@ -24,7 +25,7 @@ const Sidebar = () => {
                 </li>
             </ul>
             <div className="flex w-full items-end justify-center">
-                <button className="bg-gray-600 p-2 rounded-full text-white">
+                <button onClick={() => setOpenUserInfo(true)} className="bg-gray-600 p-2 rounded-full text-white">
                     <FaUser className="text-xl"></FaUser>
                 </button>
             </div>
