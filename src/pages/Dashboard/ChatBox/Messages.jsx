@@ -17,12 +17,22 @@ const Messages = () => {
         {
             user: false,
         },
+        {
+            user: false,
+        },
     ]
     return (
-        <div>
-            {
-                messages?.map(message => <SingleMessage key={message}></SingleMessage>)
-            }
+        <div className="h-full flex flex-col justify-end">
+            <div className="space-y-4 pb-4">
+                {
+                    messages?.map(message =>
+                        <SingleMessage
+                            key={message}
+                            message={message}
+                        >
+                        </SingleMessage>)
+                }
+            </div>
         </div>
     );
 };
