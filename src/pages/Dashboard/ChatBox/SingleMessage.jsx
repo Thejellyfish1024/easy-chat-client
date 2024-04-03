@@ -19,8 +19,8 @@ const SingleMessage = ({ message }) => {
                             <FaUser></FaUser>
                         </p>
                         <div>
-                        <p className="bg-[#FFF] py-2 px-4 rounded-lg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, tempora! Impedit, eligendi mollitia? Nesciunt</p>
-                        <p className="mt-1 pl-4 text-gray-500 text-xs">3:45</p>
+                            <p className="bg-[#FFF] py-2 px-4 rounded-lg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, tempora! Impedit, eligendi mollitia? Nesciunt</p>
+                            <p className="mt-1 pl-4 text-gray-500 text-xs">3:45</p>
                         </div>
                     </div>
             }
