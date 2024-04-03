@@ -11,7 +11,7 @@ const Dashboard = () => {
             <div className="">
                 <Sidebar></Sidebar>
             </div>
-            <div className="w-[500px] space-y-8 py-6">
+            <div className="w-[500px] space-y-8 pt-6">
                 <Search></Search>
                 <AllChats></AllChats>
             </div>
