@@ -7,8 +7,11 @@ const SingleChat = () => {
                 <FaUser className="text-2xl"></FaUser>
             </p>
             <div>
-                <p className="font-bold">sinthi poti</p>
-                <p className="text-slate-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <div className="flex justify-between items-center">
+                    <p className="font-bold">sinthi poti</p>
+                    <p className="text-xs font-semibold text-slate-600">03/30/2024</p>
+                </div>
+                <p className="text-slate-600 pr-4">Lorem ipsum dolor sit, amet kjss adipisicing elit.</p>
             </div>
         </div>
     );

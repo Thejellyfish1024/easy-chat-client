@@ -1,6 +1,9 @@
+// import { Outlet } from "react-router-dom";
 import AllChats from "./AllChats/AllChats";
+import ChatBox from "./ChatBox/ChatBox";
 import Search from "./Search/Search";
 import Sidebar from "./Sidebar/Sidebar";
+// import Developer from "./Developer/Developer";
 
 const Dashboard = () => {
     return (
@@ -8,11 +11,16 @@ const Dashboard = () => {
             <div className="">
                 <Sidebar></Sidebar>
             </div>
-            <div className="w-[475px] space-y-8 py-6">
+            <div className="w-[500px] space-y-8 py-6">
                 <Search></Search>
                 <AllChats></AllChats>
             </div>
-            <div className="w-full bg-blue-600">kk</div>
+            <div className="w-full">
+                {/* {
+                location?.pathname === "/" ? <Developer></Developer> : <Outlet />
+            } */}
+                <ChatBox></ChatBox>
+            </div>
         </div>
     );
 };
