@@ -1,13 +1,14 @@
 import { Toaster } from "react-hot-toast";
 import Developer from "../../pages/Dashboard/Developer/Developer";
 import { Outlet } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const Main = () => {
-    const loading = false;
+    const { preLoading} = useAuth();
     return (
         <div>
-            {loading && <Developer></Developer>}
+            {preLoading && <Developer></Developer>}
             <Outlet></Outlet>
             {/* for showing react hot toast in the overall project */}
             <Toaster />

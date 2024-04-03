@@ -14,6 +14,7 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [preLoading, setPreLoading] = useState(true)
 
     const axiosPublic = useAxiosPublic()
     
@@ -46,6 +47,9 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() =>{
+        setTimeout(() => {
+            setPreLoading(false)
+        }, 5000);
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
             console.log('current user', currentUser);
             setUser(currentUser)
@@ -60,6 +64,7 @@ const AuthProvider = ({children}) => {
                 //     }
                 // })
                 setLoading(false)
+                setPreLoading(false)
             }
             else{
                 // localStorage.removeItem('access-token')
@@ -72,6 +77,7 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         user,
         loading,
+        preLoading,
         createUser,
         signInUser,
         googleSigning,
