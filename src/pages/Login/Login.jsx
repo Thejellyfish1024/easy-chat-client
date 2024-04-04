@@ -12,17 +12,17 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
 
         signInUser(data.email, data.password)
             .then(result => {
                 console.log(result.user);
                 toast.success('Successfully logged in')
-
-                navigate(location?.state || '/')
+                navigate('/')
+                // window.location.reload();
             })
             .catch(error =>{
-                console.log(error);
+                // console.log(error);
                 toast.error(`${error.message}`)
             })
     }

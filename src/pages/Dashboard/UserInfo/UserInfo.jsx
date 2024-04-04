@@ -1,13 +1,32 @@
 /* eslint-disable react/prop-types */
 
-// import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
-    // const { user } = useAuth();
+    const { logOut } = useAuth();
+
+    const handleLogOut = () =>{
+        console.log("out");
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                logOut();
+                toast.success('User logged out!!')
+            }
+          });
+    }
     return (
         <div className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg w-[425px] h-[475px] flex flex-col`}>
             <div className=" flex-grow py-4 px-10">
@@ -49,7 +68,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
 
                {/* log out button */}
                 <button className="w-fit text-sm py-2 px-8 shadow-md border hover:bg-gray-200 rounded-l-lg mt-4 flex gap-2 items-center font-semibold"
-                    onClick={() => ""}>
+                    onClick={handleLogOut}>
                     <RiLogoutBoxLine className="text-lg"></RiLogoutBoxLine>
                     <span>Log out</span>
                 </button>
