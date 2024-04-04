@@ -24,7 +24,7 @@ const Dashboard = () => {
             <div className="w-full">
                 <ChatBox></ChatBox>
             </div>
-            <div className={`fixed transition-all duration-300 ${openUserInfo ? "bottom-0 " : "-bottom-96"}`}>
+            <div className={`fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
                 <UserInfo
                     openUserInfo={openUserInfo}
                     setOpenUserInfo={setOpenUserInfo}
