@@ -10,9 +10,9 @@ import UserInfo from "./UserInfo/UserInfo";
 const Dashboard = () => {
     const [openUserInfo, setOpenUserInfo] = useState(false);
     return (
-        <div className="flex gap-6 p-3 max-h-screen bg-[#FFF] rounded-md relative">
+        <div className="flex gap-6 max-h-screen bg-[#FFF] rounded-md relative">
             {/* sidebar section*/}
-            <div>
+            <div className="py-3 pl-3">
                 <Sidebar setOpenUserInfo={setOpenUserInfo}></Sidebar>
             </div>
             {/* All chats section */}

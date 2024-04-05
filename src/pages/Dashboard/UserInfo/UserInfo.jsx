@@ -6,12 +6,14 @@ import { IoChevronBackOutline } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useUser from "../../../hooks/useUser";
 
 
 const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
-    const { logOut } = useAuth();
+    const { logOut, user } = useAuth();
+    const { data: userData } = useUser(user?.email)
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         console.log("out");
         Swal.fire({
             title: "Are you sure?",
@@ -20,22 +22,32 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, log out!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 logOut();
                 toast.success('User logged out!!')
             }
-          });
+        });
     }
     return (
         <div className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg w-[425px] h-[475px] flex flex-col`}>
             <div className=" flex-grow py-4 px-10">
                 {/* user image */}
-                <img
-                    className="w-32 h-32 rounded-full"
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
-                    alt="profile"
-                />
+                {
+                    userData?.image ?
+                        <img
+                            className="w-32 h-32 rounded-full"
+                            src={userData?.image}
+                            alt="profile"
+                        />
+                        :
+                        <img
+                            className="w-32 h-32 rounded-full"
+                            src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
+                            alt="profile"
+                        />
+                }
+
                 {/* user name */}
                 <div className="flex w-full justify-between mt-4">
                     <p className="text-lg font-bold">Al-amin Rahim</p>
@@ -66,7 +78,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                     </div>
                 </div>
 
-               {/* log out button */}
+                {/* log out button */}
                 <button className="w-fit text-sm py-2 px-8 shadow-md border hover:bg-gray-200 rounded-l-lg mt-4 flex gap-2 items-center font-semibold"
                     onClick={handleLogOut}>
                     <RiLogoutBoxLine className="text-lg"></RiLogoutBoxLine>
@@ -74,12 +86,12 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                 </button>
             </div>
 
-                {/* go back button */}
-                <button className="w-fit py-2 px-4 hover:bg-gray-200 rounded-r-lg mb-2 flex gap-1 items-center font-semibold"
-                    onClick={() => setOpenUserInfo(!openUserInfo)}>
-                    <IoChevronBackOutline className="text-xl"></IoChevronBackOutline>
-                    <span>back</span>
-                </button>
+            {/* go back button */}
+            <button className="w-fit py-2 px-4 hover:bg-gray-200 rounded-r-lg mb-2 flex gap-1 items-center font-semibold"
+                onClick={() => setOpenUserInfo(!openUserInfo)}>
+                <IoChevronBackOutline className="text-xl"></IoChevronBackOutline>
+                <span>back</span>
+            </button>
         </div>
     );
 };

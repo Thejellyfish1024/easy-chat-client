@@ -6,10 +6,11 @@ import useAuth from "../../../hooks/useAuth";
 import useUser from "../../../hooks/useUser";
 
 
-const Sidebar = ({setOpenUserInfo}) => {
-    const {user} = useAuth();
-    const {data : userData} = useUser(user?.email);
-    console.log(userData);
+const Sidebar = ({ setOpenUserInfo }) => {
+    const { user } = useAuth();
+    // console.log(user?.email);
+    const { data: userData } = useUser(user?.email);
+    // console.log(userData);
     return (
         <div className="w-full h-full p-6 flex flex-col justify-between bg-[#001d3d] text-gray-400 rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
@@ -30,9 +31,19 @@ const Sidebar = ({setOpenUserInfo}) => {
                 </li>
             </ul>
             <div className="flex w-full items-end justify-center">
-                <button onClick={() => setOpenUserInfo(true)} className="bg-gray-600 p-2 rounded-full text-white">
-                    <FaUser className="text-xl"></FaUser>
-                </button>
+                {
+                    userData?.image ?
+                        <img
+                            onClick={() => setOpenUserInfo(true)}
+                            src={userData?.image}
+                            className="w-9 h-9 rounded-full" alt="profile" />
+                        :
+                        <button
+                            onClick={() => setOpenUserInfo(true)}
+                            className="bg-gray-600 p-2 rounded-full text-white">
+                            <FaUser className="text-xl"></FaUser>
+                        </button>
+                }
             </div>
         </div>
     );

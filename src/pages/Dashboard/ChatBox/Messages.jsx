@@ -17,12 +17,30 @@ const Messages = () => {
         {
             user: false,
         },
+        {
+            user: true,
+        },
+        {
+            user: true,
+        },
+        {
+            user: false,
+        },
+        {
+            user: true,
+        },
+        {
+            user: true,
+        },
+        {
+            user: false,
+        },
         
        
     ]
     return (
         <div className="h-full flex flex-col justify-end">
-            <div className="space-y-4 max-h-[567px] overflow-y-auto no-scrollbar pb-4">
+            <div className="space-y-4 overflow-y-auto no-scrollbar pb-4">
                 {
                     messages?.map(message =>
                         <SingleMessage
