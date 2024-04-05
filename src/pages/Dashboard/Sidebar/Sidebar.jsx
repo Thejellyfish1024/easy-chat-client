@@ -2,9 +2,14 @@
 import { BsChatRightFill } from "react-icons/bs";
 import { IoMdStar } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import useAuth from "../../../hooks/useAuth";
+import useUser from "../../../hooks/useUser";
 
 
 const Sidebar = ({setOpenUserInfo}) => {
+    const {user} = useAuth();
+    const {data : userData} = useUser(user?.email);
+    console.log(userData);
     return (
         <div className="w-full h-full p-6 flex flex-col justify-between bg-[#001d3d] text-gray-400 rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">

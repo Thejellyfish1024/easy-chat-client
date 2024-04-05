@@ -10,9 +10,10 @@ const Login = () => {
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm()
+    
 
     const onSubmit = (data) => {
-        // console.log(data)
+        console.log(data)
 
         signInUser(data.email, data.password)
             .then(result => {

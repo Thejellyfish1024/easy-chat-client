@@ -4,18 +4,31 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const Register = () => {
 
-    // const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate()
 
     const { createUser, updateUserProfile, logOut } = useAuth()
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
+    const saveUserInfoDataBase = async (user) => {
+        // console.log(user);
+
+        // check user exist or not
+        const {data} = await axiosSecure.get(`/users`)
+        console.log('is exist', data);
+
+        if (!data) {
+            // post user data database
+            await axiosSecure.post("/users", user);
+        }
+    };
+
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
 
         // if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\|]).{6,}$/.test(data?.password)) {
         //     return toast.error('Password have to be minimum 6 characters . It should include capital letter and special character')
@@ -24,18 +37,18 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 updateUserProfile(data.name, null)
+
+                const user = {
+                    name: data?.name,
+                    email : data?.email,
+                    image: "",
+                };
+
+                saveUserInfoDataBase(user);
                 logOut()
                 toast.success('User Created Successfully')
 
                 navigate('/login')
-                // axiosSecure.post('/users', { name: data?.name, email: data?.email })
-                //     .then(res => {
-                //         console.log(res.data);
-                //         logOut()
-                //         toast.success('User Created Successfully')
-
-                //         navigate('/login')
-                //     })
 
             })
             .catch(error => {
