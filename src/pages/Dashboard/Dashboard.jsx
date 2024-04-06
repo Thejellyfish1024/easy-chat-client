@@ -1,14 +1,30 @@
 // import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AllChats from "./AllChats/AllChats";
 import ChatBox from "./ChatBox/ChatBox";
 import Search from "./Search/Search";
 import Sidebar from "./Sidebar/Sidebar";
 import UserInfo from "./UserInfo/UserInfo";
+import { io } from "socket.io-client";
 // import Developer from "./Developer/Developer";
 
 const Dashboard = () => {
+
+    const socket = useMemo( () =>{
+        io("http://localhost:5000", {
+            withCredentials: true
+        })
+    },[])
+
     const [openUserInfo, setOpenUserInfo] = useState(false);
+    
+
+    useEffect(() => {
+        socket.on("connect", () => {
+            console.log("connected", socket.id);
+        })
+    }, [])
+
     return (
         <div className="flex gap-6 max-h-screen bg-[#FFF] rounded-md relative">
             {/* sidebar section*/}
