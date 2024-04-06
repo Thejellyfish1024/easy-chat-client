@@ -4,37 +4,24 @@ const Messages = () => {
     const messages = [
         {
             user: true,
+            _id : 1,
         },
         {
             user: false,
+            _id : 2
         },
         {
             user: true,
+            _id : 3
         },
         {
             user: true,
+            _id : 4
         },
         {
             user: false,
-        },
-        {
-            user: true,
-        },
-        {
-            user: true,
-        },
-        {
-            user: false,
-        },
-        {
-            user: true,
-        },
-        {
-            user: true,
-        },
-        {
-            user: false,
-        },
+            _id : 5
+        }
         
        
     ]
@@ -44,7 +31,7 @@ const Messages = () => {
                 {
                     messages?.map(message =>
                         <SingleMessage
-                            key={message}
+                            key={message._id}
                             message={message}
                         >
                         </SingleMessage>)

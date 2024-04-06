@@ -10,17 +10,15 @@ import { io } from "socket.io-client";
 
 const Dashboard = () => {
 
-    const socket = useMemo( () =>{
-        io("http://localhost:5000", {
-            withCredentials: true
-        })
-    },[])
+    const socket = useMemo(() => io("http://localhost:5000", {withCredentials: true,}),
+    []
+    );
 
     const [openUserInfo, setOpenUserInfo] = useState(false);
-    
+
 
     useEffect(() => {
-        socket.on("connect", () => {
+        socket?.on("connect", () => {
             console.log("connected", socket.id);
         })
     }, [])
