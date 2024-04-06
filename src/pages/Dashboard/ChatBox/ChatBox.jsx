@@ -1,8 +1,10 @@
 import { FaUser } from "react-icons/fa";
 import SendMessage from "./SendMessage";
 import Messages from "./Messages";
+import useSpecificChats from "../../../hooks/useSpecificChats";
 
 const ChatBox = () => {
+    const {data : messages, refetch} = useSpecificChats("abc@gmail.com");
     return (
         <div className="w-full h-screen py-3 pr-3 flex flex-col gap-3">
             {/* User info */}
@@ -20,9 +22,9 @@ const ChatBox = () => {
             <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md rounded-xl px-4 pb-2">
                 <div className="flex flex-col">
                     <div className="flex-grow h-[78vh]">
-                        <Messages></Messages>
+                        <Messages messages={messages} refetch={refetch}></Messages>
                     </div>
-                    <SendMessage></SendMessage>
+                    <SendMessage refetch={refetch}></SendMessage>
                 </div>
             </div>
         </div>
