@@ -42,6 +42,7 @@ const Register = () => {
                     name: data?.name,
                     email : data?.email,
                     image: "",
+                    contacts : [],
                 };
 
                 saveUserInfoDataBase(user);
