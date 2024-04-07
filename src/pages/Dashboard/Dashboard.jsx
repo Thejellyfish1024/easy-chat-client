@@ -33,7 +33,7 @@ const Dashboard = () => {
                 <Sidebar setOpenUserInfo={setOpenUserInfo}></Sidebar>
             </div>
             {/* All chats section */}
-            <div className="w-[500px] space-y-4 py-3">
+            <div className="w-[500px]  space-y-4 py-3">
                 <div className="flex justify-between items-center pt-2">
                     <h3 className="text-xl  font-bold">Chats</h3>
                     <button
@@ -43,8 +43,8 @@ const Dashboard = () => {
                     </button>
                 </div>
                 {/* Add New Contact Box */}
-                <div className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-5 opacity-100" : "-top-[500px] opacity-0"}`}>
-                    <AddNewContact></AddNewContact>
+                <div className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
+                    <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
                 </div>
                 <Search></Search>
                 <AllChats></AllChats>
