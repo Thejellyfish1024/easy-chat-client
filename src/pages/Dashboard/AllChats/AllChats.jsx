@@ -33,7 +33,7 @@ const AllChats = () => {
     ]
     return (
         <div>
-            <div className="flex flex-col gap-5 max-h-[82vh] overflow-y-auto no-scrollbar">
+            <div className="flex flex-col gap-5 max-h-[78vh] overflow-y-auto no-scrollbar">
                 {
                     allChats?.map(chat => <SingleChat key={chat} chat={chat}></SingleChat>)
                 }

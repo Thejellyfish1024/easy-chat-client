@@ -33,11 +33,12 @@ const Dashboard = () => {
                 <Sidebar setOpenUserInfo={setOpenUserInfo}></Sidebar>
             </div>
             {/* All chats section */}
-            <div className="w-[500px] space-y-8 pt-6">
-                <div className="flex justify-between">
-                    <h3>Chats</h3>
-                    <button 
-                    onClick={() => setOpenAddContact(!openAddContact)}>
+            <div className="w-[500px] space-y-4 py-3">
+                <div className="flex justify-between items-center pt-2">
+                    <h3 className="text-xl  font-bold">Chats</h3>
+                    <button
+                        type="button"
+                        onClick={() => setOpenAddContact(!openAddContact)}>
                         <IoMdAddCircle className="text-2xl"></IoMdAddCircle>
                     </button>
                 </div>
