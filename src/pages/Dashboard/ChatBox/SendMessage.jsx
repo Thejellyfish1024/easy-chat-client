@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import { ConversationContext } from "../../../provider/ConversationProvider";
 const SendMessage = ({refetch}) => {
     const [message, setMessage] = useState("");
+    const {activeChat} = useContext(ConversationContext);
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
@@ -13,7 +15,7 @@ const SendMessage = ({refetch}) => {
         // console.log(message);
         const newMessage = {
             sender: user?.email,
-            receiver: "abc@gmail.com",
+            receiver: activeChat,
             message: message
         }
         const { data } = await axiosSecure.post("/send-message", newMessage);

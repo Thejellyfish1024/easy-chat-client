@@ -2,9 +2,11 @@
 
 import { FaUser } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
+import useUser from "../../../hooks/useUser";
 
 const SingleMessage = ({ message }) => {
-    const {user} = useAuth();
+    const { user } = useAuth();
+    const { data: userData } = useUser(user?.email);
     return (
         <div>
             {
@@ -17,9 +19,17 @@ const SingleMessage = ({ message }) => {
                     </div>
                     :
                     <div className="flex gap-4 items-end">
-                        <p className="bg-gray-300 w-fit h-fit p-2 rounded-full text-white">
-                            <FaUser></FaUser>
-                        </p>
+                        {
+                            userData?.image === "" ?
+                                <p className="bg-gray-300 w-fit h-fit p-2 rounded-full text-white">
+                                    <FaUser></FaUser>
+                                </p>
+                                :
+                                <img
+                                    className="w-7 h-7 rounded-full"
+                                    src={userData?.image}
+                                    alt="" />
+                        }
                         <div>
                             <p className="bg-[#FFF] py-2 px-4 rounded-lg">{message?.message}</p>
                             <p className="mt-1 pl-4 text-gray-500 text-xs">3:45</p>
