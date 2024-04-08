@@ -37,6 +37,7 @@ const Dashboard = () => {
                 <div className="flex justify-between items-center pt-2">
                     <h3 className="text-xl  font-bold">Chats</h3>
                     <button
+                    className="text-blue-500"
                         type="button"
                         onClick={() => setOpenAddContact(!openAddContact)}>
                         <IoMdAddCircle className="text-2xl"></IoMdAddCircle>

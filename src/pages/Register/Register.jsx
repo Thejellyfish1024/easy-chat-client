@@ -18,8 +18,8 @@ const Register = () => {
         // console.log(user);
 
         // check user exist or not
-        const {data} = await axiosSecure.get(`/users`)
-        console.log('is exist', data);
+        const {data} = await axiosSecure.get(`/users/${user?.email}`)
+        // console.log('is exist', data);
 
         if (!data) {
             // post user data database
@@ -42,6 +42,8 @@ const Register = () => {
                     name: data?.name,
                     email : data?.email,
                     image: "",
+                    about: "",
+                    phone: "",
                     contacts : [],
                 };
 

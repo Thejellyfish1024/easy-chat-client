@@ -50,7 +50,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
 
                 {/* user name */}
                 <div className="flex w-full justify-between mt-4">
-                    <p className="text-lg font-bold">Al-amin Rahim</p>
+                    <p className="text-lg font-bold">{userData?.name}</p>
                     <button className="p-2 hover:bg-gray-200 rounded-lg text-gray-700">
                         <MdOutlineModeEdit></MdOutlineModeEdit>
                     </button>
