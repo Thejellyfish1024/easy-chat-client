@@ -2,9 +2,13 @@ import { FaUser } from "react-icons/fa";
 import SendMessage from "./SendMessage";
 import Messages from "./Messages";
 import useSpecificChats from "../../../hooks/useSpecificChats";
+import { ConversationContext } from "../../../provider/ConversationProvider";
+import { useContext } from "react";
 
 const ChatBox = () => {
-    const {data : messages, refetch} = useSpecificChats("abc@gmail.com");
+    const {activeChat} = useContext(ConversationContext);
+
+    const {data : messages, refetch} = useSpecificChats(activeChat);
     return (
         <div className="w-full h-screen py-3 pr-3 flex flex-col gap-3">
             {/* User info */}
