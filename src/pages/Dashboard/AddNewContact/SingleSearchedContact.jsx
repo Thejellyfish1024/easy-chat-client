@@ -11,7 +11,7 @@ const SingleSearchedContact = ({contact}) => {
             {contact?.name}
           </p>
           <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-            {/* {user?.email} */} abc@gmail
+            {contact?.email}
           </p>
         </div>
           <div

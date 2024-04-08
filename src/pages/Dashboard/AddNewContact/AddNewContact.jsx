@@ -3,16 +3,20 @@
 import { MdOutlineCancel } from "react-icons/md";
 import SingleSearchedContact from "./SingleSearchedContact";
 import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
 const AddNewContact = ({ setOpenAddContact }) => {
-    // const [searchedContacts, setSearchedContacts] = useState([]);
+    const [searchedContacts, setSearchedContacts] = useState([]);
     const [openSuggestions, setOpenSuggestions] = useState(false)
+    const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
 
 
 
     const handleInputChange = async (e) => {
         let query = e?.target?.value;
-        console.log("suggestion", openSuggestions);
+        // console.log("query", query);
 
         if (query === "") {
             setOpenSuggestions(false);
@@ -21,39 +25,40 @@ const AddNewContact = ({ setOpenAddContact }) => {
             setOpenSuggestions(true);
         }
 
-        // const res = await axiosPublic.get(`/api/cards/search?query=${query}&userEmail=${user?.email}`);
-        // setQueryResults(res.data);
+        const res = await axiosSecure.get(`/users-search?query=${query}&&email=${user?.email}`);
+        // console.log(res?.data);
+        setSearchedContacts(res.data);
     };
 
-    const searchedContacts = [
-        {
-            name: "rahim",
-        },
-        {
-            name: "jumman",
-        },
-        {
-            name: "sohag",
-        },
-        {
-            name: "mama",
-        },
-        {
-            name: "mama",
-        },
-        {
-            name: "mama",
-        },
-        {
-            name: "mama",
-        },
-        {
-            name: "mama",
-        },
-        {
-            name: "mama",
-        },
-    ]
+    // const searchedContacts = [
+    //     {
+    //         name: "rahim",
+    //     },
+    //     {
+    //         name: "jumman",
+    //     },
+    //     {
+    //         name: "sohag",
+    //     },
+    //     {
+    //         name: "mama",
+    //     },
+    //     {
+    //         name: "mama",
+    //     },
+    //     {
+    //         name: "mama",
+    //     },
+    //     {
+    //         name: "mama",
+    //     },
+    //     {
+    //         name: "mama",
+    //     },
+    //     {
+    //         name: "mama",
+    //     },
+    // ]
     return (
         <div className={`bg-[#FFF] z-40 shadow-2xl border rounded-lg w-80 h-[540px] flex flex-col px-5 pt-5`}>
             <div className="flex justify-between items-center">
