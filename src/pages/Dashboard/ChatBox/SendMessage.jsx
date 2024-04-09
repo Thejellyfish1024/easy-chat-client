@@ -12,17 +12,17 @@ const SendMessage = ({refetch}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(message);
+        // console.log(message);
         const newMessage = {
             sender: user?.email,
             receiver: activeChat,
             message: message
         }
         const { data } = await axiosSecure.post("/send-message", newMessage);
-        console.log(data);
+        // console.log(data);
         if (data?.insertedId) {
-            setMessage("");
             refetch();
+            setMessage("");
         }
 
     }
@@ -30,7 +30,10 @@ const SendMessage = ({refetch}) => {
         <form onSubmit={handleSubmit} className="flex gap-2">
             <input type="text" name="" id=""
                 value={message}
-                onChange={(e) => setMessage(e?.target?.value)}
+                onChange={(e) => {
+                    setMessage(e?.target?.value)
+                    // handleTextAreaHeight();
+                }}
                 className="w-full border py-2 px-6 bg-[#FFF] rounded-lg"
                 placeholder="Message..." />
             <button
