@@ -30,35 +30,6 @@ const AddNewContact = ({ setOpenAddContact }) => {
         setSearchedContacts(res.data);
     };
 
-    // const searchedContacts = [
-    //     {
-    //         name: "rahim",
-    //     },
-    //     {
-    //         name: "jumman",
-    //     },
-    //     {
-    //         name: "sohag",
-    //     },
-    //     {
-    //         name: "mama",
-    //     },
-    //     {
-    //         name: "mama",
-    //     },
-    //     {
-    //         name: "mama",
-    //     },
-    //     {
-    //         name: "mama",
-    //     },
-    //     {
-    //         name: "mama",
-    //     },
-    //     {
-    //         name: "mama",
-    //     },
-    // ]
     return (
         <div className={`bg-[#FFF] z-40 shadow-2xl border rounded-lg w-80 h-[540px] flex flex-col px-5 pt-5`}>
             <div className="flex justify-between items-center">
