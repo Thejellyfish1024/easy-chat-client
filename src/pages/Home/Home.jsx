@@ -1,5 +1,6 @@
 import useAuth from "../../hooks/useAuth";
 import Desktop from "../../layouts/Desktop/Desktop";
+import Mobile from "../../layouts/Mobile/Mobile";
 import Login from "../Login/Login";
 
 const Home = () => {
@@ -7,7 +8,14 @@ const Home = () => {
     return (
         <div>
             {user ?
-                <Desktop></Desktop>
+                <>
+                    <div className="lg:block hidden">
+                        <Desktop></Desktop>
+                    </div>
+                    <div className="lg:hidden">
+                        <Mobile></Mobile>
+                    </div>
+                </>
                 :
                 <Login></Login>
             }

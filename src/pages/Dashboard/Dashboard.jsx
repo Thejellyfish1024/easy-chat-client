@@ -23,9 +23,12 @@ const Dashboard = () => {
                 <Sidebar setOpenUserInfo={setOpenUserInfo}></Sidebar>
             </div>
             {/* All chats section */}
-            <div className="w-[500px]  space-y-4 py-3">
+            <div className="w-[510px] space-y-4 py-3">
                 <div className="flex justify-between items-center pt-2">
-                    <h3 className="text-xl  font-bold">Chats</h3>
+                    <div className="flex gap-2 items-center">
+                        <img src={logo} className="w-10" alt="" />
+                        <h3 className="text-xl  font-bold">Chats</h3>
+                    </div>
                     <button
                         className="text-blue-500"
                         type="button"

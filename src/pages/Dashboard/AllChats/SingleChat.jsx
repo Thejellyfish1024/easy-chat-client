@@ -11,13 +11,13 @@ const SingleChat = ({ contact }) => {
     return (
         <div role="button"
             onClick={() => setActiveChat(contact)}
-            className={`w-full p-4 rounded-xl flex gap-4 items-center 
+            className={`w-full xl:p-4 p-3 rounded-xl flex gap-4 items-center 
          ${active ? "bg-blue-500 text-gray-100" : "bg-gray-200 hover:bg-gray-300"}`}>
             {/* user image */}
             {
                 userData?.image === "" ?
                     <p className="bg-gray-300 w-fit h-fit p-4 rounded-full text-white">
-                        <FaUser className="text-2xl"></FaUser>
+                        <FaUser className="lg:text-2xl md:text-xl text-sm"></FaUser>
                     </p>
                     :
                     <img
@@ -39,7 +39,7 @@ const SingleChat = ({ contact }) => {
                         contact?.message?.length > 56 &&
                         <span>...</span>
                     } */}
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, sapiente.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 </p>
             </div>
         </div>

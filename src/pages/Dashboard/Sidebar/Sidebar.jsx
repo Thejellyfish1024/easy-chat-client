@@ -12,7 +12,7 @@ const Sidebar = ({ setOpenUserInfo }) => {
     const { data: userData } = useUser(user?.email);
     // console.log(userData);
     return (
-        <div className="w-full h-full p-6 flex flex-col justify-between bg-[#001d3d] text-gray-400 rounded-2xl">
+        <div className="w-full h-full py-6 xl:px-4 lg:px-3 md:px-4 px-2 flex flex-col justify-between bg-[#001d3d] text-gray-400 lg:rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
                 <li className="p-3 rounded-lg bg-[#0077b6] text-white">
                     <BsChatRightFill className="text-lg"></BsChatRightFill>

@@ -10,7 +10,7 @@ const ChatBox = () => {
     const { data: userData } = useUser(activeChat)
     const { data: messages, refetch } = useSpecificChats(activeChat);
     return (
-        <div className="w-full h-screen py-3 pr-3 flex flex-col gap-3">
+        <div className="w-full h-screen py-3 lg:pr-3 md:pr-6 pr-3 flex flex-col gap-3">
             {/* User info */}
             <div className="w-full bg-[#001d3d] text-white p-4  rounded-xl flex justify-between items-center">
                 <div className="flex gap-4 items-center">
@@ -18,12 +18,12 @@ const ChatBox = () => {
                     {
                         userData?.image === "" ?
                             <img
-                                className="w-12 h-12 rounded-full"
+                                className="xl:w-10 w-8 xl:h-10 h-8 rounded-full"
                                 src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
                                 alt="" />
                             :
                             <img
-                                className="w-12 h-12 rounded-full"
+                                className="xl:w-10 w-8 xl:h-10 h-8 rounded-full"
                                 src={userData?.image}
                                 alt="" />
                     }
@@ -33,7 +33,7 @@ const ChatBox = () => {
             </div>
 
             {/* Chats */}
-            <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md rounded-xl px-4 pb-2">
+            <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md rounded-xl md:px-4 px-2 pb-2">
                 <div className="flex flex-col">
                     <div className="flex-grow h-[78vh]">
                         <Messages messages={messages} refetch={refetch}></Messages>
