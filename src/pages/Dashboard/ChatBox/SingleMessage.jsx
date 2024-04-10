@@ -18,8 +18,8 @@ const SingleMessage = ({ message }) => {
                         ref={scrollRef}
                         className="flex justify-end w-full">
                         <div>
-                            <p className="bg-blue-500 text-gray-200 md:py-2 md:px-4 w-fit px-2 py-1  rounded-lg text-sm md:text-base">{message?.message}</p>
-                            <p className="text-right pr-4 text-gray-500 text-xs mt-1">3:45</p>
+                            <p className="bg-blue-500 text-gray-200 md:py-2 md:px-4 w-fit px-2 py-1  rounded-lg">{message?.message}</p>
+                            <p className="text-right pr-4 text-gray-500 text-[10px] lg:text-[12px] mt-1">3:45</p>
                         </div>
                     </div>
                     :
@@ -38,8 +38,8 @@ const SingleMessage = ({ message }) => {
                                 </p>
                         }
                         <div>
-                            <p className="bg-[#FFF] md:py-2 md:px-4 w-fit px-2 py-1 rounded-lg text-sm md:text-base">{message?.message}</p>
-                            <p className="mt-1 pl-4 text-gray-500 text-xs">3:45</p>
+                            <p className="bg-[#FFF] md:py-2 md:px-4 w-fit px-2 py-1 rounded-lg">{message?.message}</p>
+                            <p className="mt-1 pl-4 text-gray-500 text-[10px] lg:text-[12px]">3:45</p>
                         </div>
                     </div>
             }

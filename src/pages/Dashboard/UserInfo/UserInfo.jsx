@@ -47,8 +47,8 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
         <div
             tabIndex="1"
             onBlur={handleBlur}
-            className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg w-[425px] h-[475px] flex flex-col`}>
-            <div className=" flex-grow py-4 px-10">
+            className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg md:w-[425px] h-[475px] flex flex-col`}>
+            <div className=" flex-grow py-4 md:px-10 px-5">
                 {/* user image */}
                 {
                     userData?.image ?

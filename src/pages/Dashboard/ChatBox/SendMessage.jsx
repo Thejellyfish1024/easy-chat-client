@@ -27,18 +27,18 @@ const SendMessage = ({refetch}) => {
 
     }
     return (
-        <form onSubmit={handleSubmit} className="flex gap-2">
+        <form onSubmit={handleSubmit} className="flex lg:gap-2">
             <input type="text" name="" id=""
                 value={message}
                 onChange={(e) => {
                     setMessage(e?.target?.value)
                     // handleTextAreaHeight();
                 }}
-                className="w-full border py-2 px-6 bg-[#FFF] rounded-lg"
+                className="w-full border lg:py-2 py-[10px] px-6 bg-[#FFF] lg:rounded-lg"
                 placeholder="Message..." />
             <button
                 disabled={message == "" ? true : false}
-                className={` px-3 py-1 text-white rounded-lg ${message == "" ? "bg-slate-300" : "bg-blue-500"}`}>
+                className={` px-3 py-1 text-white lg:rounded-lg ${message == "" ? "bg-slate-300" : "bg-blue-500"}`}>
                 <FaArrowUp></FaArrowUp>
             </button>
         </form>

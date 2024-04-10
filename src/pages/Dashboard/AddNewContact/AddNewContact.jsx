@@ -47,7 +47,7 @@ const AddNewContact = ({ setOpenAddContact }) => {
         <div
             tabIndex="1"
             onBlur={handleBlur}
-            className={`bg-[#FFF] z-40 shadow-2xl border rounded-lg w-80 h-[540px] flex flex-col px-5 pt-5`}>
+            className={`bg-[#FFF] z-40 shadow-2xl border rounded-lg md:w-80 w-72 md:h-[540px] h-[450px] flex flex-col px-5 pt-5`}>
             <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold">New Contact</h3>
                 <button type="button" className="text-red-500" onClick={() => setOpenAddContact(false)}>

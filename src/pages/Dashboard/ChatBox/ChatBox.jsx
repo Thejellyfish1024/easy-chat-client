@@ -10,9 +10,9 @@ const ChatBox = () => {
     const { data: userData } = useUser(activeChat)
     const { data: messages, refetch } = useSpecificChats(activeChat);
     return (
-        <div className="w-full h-screen py-3 lg:pr-3 md:pr-6 pr-3 flex flex-col gap-3">
+        <div className="w-full h-screen lg:py-3 lg:pr-3 flex flex-col lg:gap-3">
             {/* User info */}
-            <div className="w-full bg-[#001d3d] text-white p-4  rounded-xl flex justify-between items-center">
+            <div className="w-full bg-[#001d3d] text-white p-4  lg:rounded-xl flex justify-between items-center">
                 <div className="flex gap-4 items-center">
                     {/* user image */}
                     {
@@ -33,9 +33,9 @@ const ChatBox = () => {
             </div>
 
             {/* Chats */}
-            <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md rounded-xl md:px-4 px-2 pb-2">
+            <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md lg:rounded-xl lg:px-4">
                 <div className="flex flex-col">
-                    <div className="flex-grow h-[78vh]">
+                    <div className="flex-grow lg:h-[78vh] h-[85vh] lg:px-0 px-2">
                         <Messages messages={messages} refetch={refetch}></Messages>
                     </div>
                     <SendMessage refetch={refetch}></SendMessage>

@@ -17,7 +17,7 @@ const Mobile = () => {
     const { activeChat } = useContext(ConversationContext);
 
     return (
-        <div className="flex md:gap-6 gap-3 h-screen bg-[#FFF] rounded-md relative">
+        <div className="flex lg:gap-6 h-screen bg-[#FFF] rounded-md relative">
             {/* sidebar section*/}
             <div className="">
                 <Sidebar setOpenUserInfo={setOpenUserInfo}></Sidebar>
@@ -25,7 +25,7 @@ const Mobile = () => {
 
             {
                 activeChat ?
-                    < div className="w-full transition-all duration-500">
+                    < div className="w-full transition-all duration-500 border-l">
                         {/* chat box section */}
                         {
                             activeChat ?
@@ -59,7 +59,7 @@ const Mobile = () => {
                             </div>
                             {/* Add New Contact Box */}
                             <div
-                                className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
+                                className={`fixed shadow-xl transition-all duration-500 right-4 ${openAddContact ? "top-8 opacity-100" : "-top-[575px] opacity-100"}`}>
                                 <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
                             </div>
                             <Search></Search>
@@ -71,7 +71,7 @@ const Mobile = () => {
 
 
             {/* userInfo Box */}
-            <div className={`fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
+            <div className={`fixed shadow-xl pr-7 transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
                 <UserInfo
                     openUserInfo={openUserInfo}
                     setOpenUserInfo={setOpenUserInfo}

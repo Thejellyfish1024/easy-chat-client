@@ -3,8 +3,8 @@ import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    // baseURL: 'https://easy-chat-server.vercel.app'
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://easy-chat-server.vercel.app'
+    // baseURL: 'http://localhost:5000'
 })
 
 const useAxiosSecure = () => {
