@@ -1,5 +1,5 @@
 // import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AllChats from "./AllChats/AllChats";
 import ChatBox from "./ChatBox/ChatBox";
 import Search from "./Search/Search";
@@ -7,14 +7,14 @@ import Sidebar from "./Sidebar/Sidebar";
 import UserInfo from "./UserInfo/UserInfo";
 import { IoMdAddCircle } from "react-icons/io";
 import AddNewContact from "./AddNewContact/AddNewContact";
-// import Developer from "./Developer/Developer";
+import { ConversationContext } from "../../provider/ConversationProvider";
+import logo from "../../assets/easy-chat-logo.jpg"
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-
-
-
     const [openUserInfo, setOpenUserInfo] = useState(false);
     const [openAddContact, setOpenAddContact] = useState(false);
+    const { activeChat } = useContext(ConversationContext);
 
     return (
         <div className="flex gap-6 max-h-screen bg-[#FFF] rounded-md relative">
@@ -42,8 +42,20 @@ const Dashboard = () => {
                 <AllChats></AllChats>
             </div>
             {/* chat box section */}
-            <div className="w-full">
-                <ChatBox></ChatBox>
+            <div className="w-full transition-all duration-500">
+                {
+                    activeChat ?
+                        <ChatBox></ChatBox>
+                        :
+                        <div className="flex flex-col h-screen justify-center items-center border">
+                            <img
+                                className="w-20"
+                                src={logo}
+                                alt="logo" />
+                            <h2 className="text-2xl font-bold italic text-blue-500">Easy Chat</h2>
+                            <h3 className="text-center font-medium mt-2 text-gray-500">@Developed by <Link className="hover:text-black hover:underline" target="_blank" to="https://webdevshihab.netlify.app/">Mohammad Rahim</Link></h3>
+                        </div>
+                }
             </div>
             {/* userInfo Box */}
             <div className={`fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
