@@ -11,7 +11,7 @@ import AddNewContact from "./AddNewContact/AddNewContact";
 
 const Dashboard = () => {
 
-    
+
 
     const [openUserInfo, setOpenUserInfo] = useState(false);
     const [openAddContact, setOpenAddContact] = useState(false);
@@ -27,14 +27,15 @@ const Dashboard = () => {
                 <div className="flex justify-between items-center pt-2">
                     <h3 className="text-xl  font-bold">Chats</h3>
                     <button
-                    className="text-blue-500"
+                        className="text-blue-500"
                         type="button"
                         onClick={() => setOpenAddContact(!openAddContact)}>
                         <IoMdAddCircle className="text-2xl"></IoMdAddCircle>
                     </button>
                 </div>
                 {/* Add New Contact Box */}
-                <div className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
+                <div
+                    className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
                     <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
                 </div>
                 <Search></Search>

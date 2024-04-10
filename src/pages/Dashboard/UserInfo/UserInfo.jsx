@@ -29,8 +29,25 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
             }
         });
     }
+
+    const handleBlur = (e) => {
+        const currentTarget = e.currentTarget;
+
+        // Check the newly focused element in the next tick of the event loop
+        setTimeout(() => {
+            // Check if the new activeElement is a child of the original container
+            if (!currentTarget.contains(document.activeElement)) {
+                // You can invoke a callback or add custom logic here
+                setOpenUserInfo(false)
+            }
+        }, 0);
+    };
+
     return (
-        <div className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg w-[425px] h-[475px] flex flex-col`}>
+        <div
+            tabIndex="1"
+            onBlur={handleBlur}
+            className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg w-[425px] h-[475px] flex flex-col`}>
             <div className=" flex-grow py-4 px-10">
                 {/* user image */}
                 {

@@ -10,7 +10,7 @@ const AddNewContact = ({ setOpenAddContact }) => {
     const [searchedContacts, setSearchedContacts] = useState([]);
     const [openSuggestions, setOpenSuggestions] = useState(false)
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth();
+    const { user } = useAuth();
 
 
 
@@ -30,8 +30,24 @@ const AddNewContact = ({ setOpenAddContact }) => {
         setSearchedContacts(res.data);
     };
 
+    const handleBlur = (e) => {
+        const currentTarget = e.currentTarget;
+    
+        // Check the newly focused element in the next tick of the event loop
+        setTimeout(() => {
+          // Check if the new activeElement is a child of the original container
+          if (!currentTarget.contains(document.activeElement)) {
+            // You can invoke a callback or add custom logic here
+            setOpenAddContact(false)
+          }
+        }, 0);
+      };
+
     return (
-        <div className={`bg-[#FFF] z-40 shadow-2xl border rounded-lg w-80 h-[540px] flex flex-col px-5 pt-5`}>
+        <div
+            tabIndex="1"
+            onBlur={handleBlur}
+            className={`bg-[#FFF] z-40 shadow-2xl border rounded-lg w-80 h-[540px] flex flex-col px-5 pt-5`}>
             <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold">New Contact</h3>
                 <button type="button" className="text-red-500" onClick={() => setOpenAddContact(false)}>
