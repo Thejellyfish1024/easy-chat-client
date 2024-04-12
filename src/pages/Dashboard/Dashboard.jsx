@@ -10,40 +10,56 @@ import AddNewContact from "./AddNewContact/AddNewContact";
 import { ConversationContext } from "../../provider/ConversationProvider";
 import logo from "../../assets/easy-chat-logo.jpg"
 import { Link } from "react-router-dom";
+import AddRequests from "./AddRequests/AddRequests";
 
 const Dashboard = () => {
     const [openUserInfo, setOpenUserInfo] = useState(false);
     const [openAddContact, setOpenAddContact] = useState(false);
+    const [activeRoute, setActiveRoute] = useState("all-chats")
     const { activeChat } = useContext(ConversationContext);
 
     return (
         <div className="flex gap-6 max-h-screen bg-[#FFF] rounded-md relative">
             {/* sidebar section*/}
             <div className="py-3 pl-3">
-                <Sidebar setOpenUserInfo={setOpenUserInfo}></Sidebar>
+                <Sidebar
+                    setActiveRoute={setActiveRoute}
+                    activeRoute={activeRoute}
+                    setOpenUserInfo={setOpenUserInfo}
+                ></Sidebar>
             </div>
-            {/* All chats section */}
-            <div className="w-[510px] space-y-4 py-3">
-                <div className="flex justify-between items-center pt-2">
-                    <div className="flex gap-2 items-center">
-                        <img src={logo} className="w-10" alt="" />
-                        <h3 className="text-xl  font-bold">Chats</h3>
+            {/* outlet section */}
+
+            {
+                // all-chats
+                activeRoute === "all-chats" &&
+                <div className="w-[510px] space-y-4 py-3">
+                    <div className="flex justify-between items-center pt-2">
+                        <div className="flex gap-2 items-center">
+                            <img src={logo} className="w-10" alt="" />
+                            <h3 className="text-xl  font-bold">Chats</h3>
+                        </div>
+                        <button
+                            className="text-blue-500"
+                            type="button"
+                            onClick={() => setOpenAddContact(!openAddContact)}>
+                            <IoMdAddCircle className="text-2xl"></IoMdAddCircle>
+                        </button>
                     </div>
-                    <button
-                        className="text-blue-500"
-                        type="button"
-                        onClick={() => setOpenAddContact(!openAddContact)}>
-                        <IoMdAddCircle className="text-2xl"></IoMdAddCircle>
-                    </button>
+                    {/* Add New Contact Box */}
+                    <div
+                        className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
+                        <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
+                    </div>
+                    <Search></Search>
+                    <AllChats></AllChats>
                 </div>
-                {/* Add New Contact Box */}
-                <div
-                    className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
-                    <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
-                </div>
-                <Search></Search>
-                <AllChats></AllChats>
-            </div>
+            }
+            {
+                // add requests section
+                activeRoute === "add-requests" &&
+                <AddRequests></AddRequests>
+            }
             {/* chat box section */}
             <div className="w-full transition-all duration-500">
                 {

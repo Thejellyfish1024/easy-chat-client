@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import useUser from "../../../hooks/useUser";
 
 
-const Sidebar = ({ setOpenUserInfo }) => {
+const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
     const { user } = useAuth();
     // console.log(user?.email);
     const { data: userData } = useUser(user?.email);
@@ -14,13 +14,25 @@ const Sidebar = ({ setOpenUserInfo }) => {
     return (
         <div className="w-full h-full py-6 xl:px-4 lg:px-3 md:px-4 px-1 flex flex-col justify-between bg-[#001d3d] text-gray-400 lg:rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
-                <li className="md:p-3 p-2 rounded-lg bg-[#0077b6] text-white">
+                {/* all chats */}
+                <li
+                    onClick={() => setActiveRoute("all-chats")}
+                    className={`md:p-3 p-2 rounded-lg text-white 
+                ${activeRoute === "all-chats" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <BsChatRightFill className="text-lg"></BsChatRightFill>
                 </li>
-                <li className="md:p-3 p-2 rounded-lg hover:bg-[#0077b6] hover:text-white">
+                {/* add requests */}
+                <li
+                    onClick={() => setActiveRoute("add-requests")}
+                    className={`md:p-3 p-2 rounded-lg text-white 
+                ${activeRoute === "add-requests" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <FaUserFriends className="text-2xl"></FaUserFriends>
                 </li>
-                <li className="md:p-3 p-2 rounded-lg hover:bg-[#0077b6] hover:text-white">
+                {/*  */}
+                <li
+                    onClick={() => setActiveRoute("star")}
+                    className={`md:p-3 p-2 rounded-lg text-white 
+                ${activeRoute === "star" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <IoMdStar className="text-2xl"></IoMdStar>
                 </li>
             </ul>
