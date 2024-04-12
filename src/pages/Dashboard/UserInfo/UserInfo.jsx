@@ -15,7 +15,11 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const { logOut, user } = useAuth();
     const { data: userData } = useUser(user?.email)
     const [editUserName, setEditUserName] = useState(false);
+    const [editAbout, setEditAbout] = useState(false);
+    const [editNumber, setEditNumber] = useState(false);
     const nameRef = useRef();
+    const aboutRef = useRef();
+    const phoneRef = useRef();
 
     const handleLogOut = () => {
         console.log("out");
@@ -47,8 +51,8 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
         }, 0);
     };
 
-    const handleEdit = (ref) => {
-        setEditUserName(true);
+    const handleEdit = (ref, setEditInfo) => {
+        setEditInfo(true);
         setTimeout(() => {
             handleFocus(ref)
         }, 0);
@@ -87,13 +91,15 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                     editUserName ?
                         <CommonUpdateField
                             inputRef={nameRef}
-                            setEditUserName={setEditUserName}
+                            setEditInfo={setEditUserName}
+                            updateAPI={"update-user-name"}
+                            defaultValue ={userData?.name}
                         >
                         </CommonUpdateField>
                         :
                         <div className="flex w-full justify-between mt-4">
                             <p className="text-lg font-bold">{userData?.name}</p>
-                            <button onClick={() => handleEdit(nameRef)} className="p-2 hover:bg-gray-200 rounded-lg text-gray-700">
+                            <button onClick={() => handleEdit(nameRef, setEditUserName)} className="p-2 hover:bg-gray-200 rounded-lg text-gray-700">
                                 <MdOutlineModeEdit></MdOutlineModeEdit>
                             </button>
                         </div>
@@ -102,34 +108,56 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                 {/* about */}
                 <div>
                     <p className="text-gray-700 mt-3">About</p>
-
-                    <div className="flex w-full justify-between mt-1">
-                        {
-                            userData?.about ?
-                                <p className="text-sm font-semibold w-3/4">{userData?.about}</p>
-                                :
-                                <p className="text-sm text-slate-600 font-semibold w-3/4">Write something about you</p>
-                        }
-                        <button className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
-                            <MdOutlineModeEdit></MdOutlineModeEdit>
-                        </button>
-                    </div>
+                    {
+                        editAbout ?
+                            <CommonUpdateField
+                                inputRef={aboutRef}
+                                setEditInfo={setEditAbout}
+                                updateAPI={"update-user-about"}
+                                defaultValue ={userData?.about}
+                            >
+                            </CommonUpdateField>
+                            :
+                            <div className="flex w-full justify-between mt-1">
+                                {
+                                    userData?.about ?
+                                        <p className="text-sm  w-3/4">{userData?.about}</p>
+                                        :
+                                        <p className="text-sm text-slate-600 font-semibold w-3/4">Write something about you</p>
+                                }
+                                <button onClick={() => handleEdit(aboutRef, setEditAbout)} className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
+                                    <MdOutlineModeEdit></MdOutlineModeEdit>
+                                </button>
+                            </div>
+                    }
                 </div>
+
                 {/* phone number */}
                 <div>
                     <p className="text-gray-700 mt-3">Phone number</p>
 
-                    <div className="flex w-full justify-between mt-1">
-                        {
+                    {
+                        editNumber ?
+                            <CommonUpdateField
+                                inputRef={phoneRef}
+                                setEditInfo={setEditNumber}
+                                updateAPI={"update-user-phone"}
+                                defaultValue ={userData?.phone}
+                            >
+                            </CommonUpdateField>
+                            :
+                            <div className="flex w-full justify-between mt-1">
+                                {
                             userData?.phone ?
-                                <p className="text-sm font-semibold w-3/4">{userData?.phone}</p>
+                                <p className="text-sm w-3/4">{userData?.phone}</p>
                                 :
                                 <p className="text-sm text-slate-600 font-semibold w-3/4">Add your phone number</p>
                         }
-                        <button className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
-                            <MdOutlineModeEdit></MdOutlineModeEdit>
-                        </button>
-                    </div>
+                                <button onClick={() => handleEdit(phoneRef, setEditNumber)} className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
+                                    <MdOutlineModeEdit></MdOutlineModeEdit>
+                                </button>
+                            </div>
+                    }
                 </div>
 
                 {/* log out button */}
