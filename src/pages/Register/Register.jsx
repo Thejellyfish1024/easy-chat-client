@@ -44,6 +44,7 @@ const Register = () => {
                     image: "",
                     about: "",
                     phone: "",
+                    addRequests:[],
                     contacts : [],
                 };
 

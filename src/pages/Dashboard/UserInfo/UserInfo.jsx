@@ -161,7 +161,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                 </div>
 
                 {/* log out button */}
-                <button className="w-fit text-sm py-2 px-8 shadow-md border hover:bg-gray-200 rounded-l-lg mt-4 flex gap-2 items-center font-semibold"
+                <button className="w-fit text-sm py-2 px-8 shadow-md border bg-gray-200 hover:bg-gray-300 rounded-l-lg mt-4 flex gap-2 items-center font-semibold"
                     onClick={handleLogOut}>
                     <RiLogoutBoxLine className="text-lg"></RiLogoutBoxLine>
                     <span>Log out</span>
