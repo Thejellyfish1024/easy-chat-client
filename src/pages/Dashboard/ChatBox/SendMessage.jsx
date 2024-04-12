@@ -34,7 +34,7 @@ const SendMessage = ({refetch}) => {
                     setMessage(e?.target?.value)
                     // handleTextAreaHeight();
                 }}
-                className="w-full border lg:py-2 py-[10px] px-6 bg-[#FFF] lg:rounded-lg"
+                className="w-full border lg:py-2 py-[9px] px-6 bg-[#FFF] lg:rounded-lg"
                 placeholder="Message..." />
             <button
                 disabled={message == "" ? true : false}

@@ -25,7 +25,7 @@ const Mobile = () => {
 
             {
                 activeChat ?
-                    < div className="w-full transition-all duration-500 border-l">
+                    <div className="w-full transition-all duration-500 border-l">
                         {/* chat box section */}
                         {
                             activeChat ?
@@ -44,7 +44,7 @@ const Mobile = () => {
                     :
                     <>
                         {/* All chats section */}
-                        <div className="lg:w-[510px] w-full space-y-4 py-1 md:pr-6 pr-3 lg:pr-0">
+                        <div className="lg:w-[510px] w-full space-y-4 py-1 md:px-3 px-2">
                             <div className="flex justify-between items-center pt-2">
                                 <div className="flex gap-2 items-center">
                                     <img src={logo} className="w-10" alt="" />

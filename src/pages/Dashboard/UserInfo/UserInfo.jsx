@@ -7,11 +7,15 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useUser from "../../../hooks/useUser";
+import { useRef, useState } from "react";
+import CommonUpdateField from "./CommonUpdateField";
 
 
 const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const { logOut, user } = useAuth();
     const { data: userData } = useUser(user?.email)
+    const [editUserName, setEditUserName] = useState(false);
+    const nameRef = useRef();
 
     const handleLogOut = () => {
         console.log("out");
@@ -43,6 +47,19 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
         }, 0);
     };
 
+    const handleEdit = (ref) => {
+        setEditUserName(true);
+        setTimeout(() => {
+            handleFocus(ref)
+        }, 0);
+    }
+
+    const handleFocus = (ref) => {
+        ref?.current?.focus();
+    }
+
+
+
     return (
         <div
             tabIndex="1"
@@ -66,18 +83,33 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                 }
 
                 {/* user name */}
-                <div className="flex w-full justify-between mt-4">
-                    <p className="text-lg font-bold">{userData?.name}</p>
-                    <button className="p-2 hover:bg-gray-200 rounded-lg text-gray-700">
-                        <MdOutlineModeEdit></MdOutlineModeEdit>
-                    </button>
-                </div>
+                {
+                    editUserName ?
+                        <CommonUpdateField
+                            inputRef={nameRef}
+                            setEditUserName={setEditUserName}
+                        >
+                        </CommonUpdateField>
+                        :
+                        <div className="flex w-full justify-between mt-4">
+                            <p className="text-lg font-bold">{userData?.name}</p>
+                            <button onClick={() => handleEdit(nameRef)} className="p-2 hover:bg-gray-200 rounded-lg text-gray-700">
+                                <MdOutlineModeEdit></MdOutlineModeEdit>
+                            </button>
+                        </div>
+                }
+
                 {/* about */}
                 <div>
                     <p className="text-gray-700 mt-3">About</p>
 
                     <div className="flex w-full justify-between mt-1">
-                        <p className="text-sm w-3/4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, ut!</p>
+                        {
+                            userData?.about ?
+                                <p className="text-sm font-semibold w-3/4">{userData?.about}</p>
+                                :
+                                <p className="text-sm text-slate-600 font-semibold w-3/4">Write something about you</p>
+                        }
                         <button className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
                             <MdOutlineModeEdit></MdOutlineModeEdit>
                         </button>
@@ -88,7 +120,12 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                     <p className="text-gray-700 mt-3">Phone number</p>
 
                     <div className="flex w-full justify-between mt-1">
-                        <p className="text-sm w-3/4">01991981115</p>
+                        {
+                            userData?.phone ?
+                                <p className="text-sm font-semibold w-3/4">{userData?.phone}</p>
+                                :
+                                <p className="text-sm text-slate-600 font-semibold w-3/4">Add your phone number</p>
+                        }
                         <button className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
                             <MdOutlineModeEdit></MdOutlineModeEdit>
                         </button>
@@ -114,3 +151,20 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
 };
 
 export default UserInfo;
+
+// {
+//     openEditInput ?
+//         <div>
+//             <input type="text" defaultValue={comment?.comment}
+//                 ref={inputRef}
+//                 id="inputBox"
+//                 className="bg-[#D9D9D980] text-gray-800 w-full py-4 pl-4 border-none rounded-lg" />
+//             <div className="mt-2">
+//                 <button onClick={handleSaveChanges} className="ml-1 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#50B577] text-white rounded-md hover:bg-green-500 ">Save Changes</button>
+
+//                 <button onClick={() => setOpenEditInput(false)} className="ml-3 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#ECECEC] rounded-md hover:bg-gray-300  ">Cancel</button>
+//             </div>
+//         </div>
+//         :
+//         <p className="bg-[#D9D9D980] text-gray-800 w-full py-2 pl-4 border-none rounded-lg">{comment?.comment}</p>
+// }

@@ -8,12 +8,12 @@ import useSpecificChats from "../hooks/useSpecificChats";
 export const ConversationContext = createContext(null);
 
 const ConversationProvider = ({ children }) => {
-    const socket = useMemo(() => io("https://easy-chat-server.vercel.app", { withCredentials: true, }),
-        []
-    );
-    // const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
+    // const socket = useMemo(() => io("https://easy-chat-server.vercel.app", { withCredentials: true, }),
     //     []
     // );
+    const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
+        []
+    );
 
     const [chatLoading, setChatLoading] = useState(false);
     const [activeChat, setActiveChat] = useState("");
