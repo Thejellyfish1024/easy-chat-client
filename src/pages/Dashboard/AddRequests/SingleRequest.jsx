@@ -13,7 +13,7 @@ const SingleRequest = ({ request, refetch }) => {
 
     const handleAccept = async() => {
         const res = await axiosSecure.post("/add-contact", { newContact: request, currentUser: user?.email })
-            console.log(res?.data);
+            // console.log(res?.data);
             if (res?.data?.update) {
                 refetch();
                 toast.success('Successfully added');
