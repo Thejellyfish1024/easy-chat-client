@@ -19,14 +19,6 @@ const SingleSearchedContact = ({ contact }) => {
   const isExistedRequest = contactData?.addRequests?.find(singleRequest => singleRequest === user?.email)
   // console.log(isExistedRequest);
 
-  // const handleAddContact = async () => {
-  //   const res = await axiosSecure.post("/add-contact", {newContact : contact?.email , currentUser : user?.email})
-  //   console.log(res?.data);
-  //   if(res?.data?.update){
-  //     refetch();
-  //     toast.success('Successfully added');
-  //   }
-  // }
 
   const handleRequestContact = async () => {
     const res = await axiosSecure.put(`/contact-request`, { requestFrom: user?.email, requestTo: contact?.email })
