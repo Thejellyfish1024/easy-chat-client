@@ -179,20 +179,3 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
 };
 
 export default UserInfo;
-
-// {
-//     openEditInput ?
-//         <div>
-//             <input type="text" defaultValue={comment?.comment}
-//                 ref={inputRef}
-//                 id="inputBox"
-//                 className="bg-[#D9D9D980] text-gray-800 w-full py-4 pl-4 border-none rounded-lg" />
-//             <div className="mt-2">
-//                 <button onClick={handleSaveChanges} className="ml-1 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#50B577] text-white rounded-md hover:bg-green-500 ">Save Changes</button>
-
-//                 <button onClick={() => setOpenEditInput(false)} className="ml-3 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#ECECEC] rounded-md hover:bg-gray-300  ">Cancel</button>
-//             </div>
-//         </div>
-//         :
-//         <p className="bg-[#D9D9D980] text-gray-800 w-full py-2 pl-4 border-none rounded-lg">{comment?.comment}</p>
-// }

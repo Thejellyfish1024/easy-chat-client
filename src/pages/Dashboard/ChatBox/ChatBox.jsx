@@ -2,10 +2,15 @@ import SendMessage from "./SendMessage";
 import Messages from "./Messages";
 import useSpecificChats from "../../../hooks/useSpecificChats";
 import { ConversationContext } from "../../../provider/ConversationProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useUser from "../../../hooks/useUser";
+import { IoCall } from "react-icons/io5";
+import { IoVideocam } from "react-icons/io5";
+import { BsFillInfoCircleFill } from "react-icons/bs";
+import ContactInfo from "./ContactInfo";
 
 const ChatBox = () => {
+    const [openContactInfo, setOpenContactInfo] = useState(false);
     const { activeChat } = useContext(ConversationContext);
     const { data: userData } = useUser(activeChat)
     const { data: messages, refetch } = useSpecificChats(activeChat);
@@ -13,7 +18,7 @@ const ChatBox = () => {
         <div className="w-full h-screen lg:py-3 lg:pr-3 flex flex-col lg:gap-3">
             {/* User info */}
             <div className="w-full bg-[#001d3d] text-white p-4  lg:rounded-xl flex justify-between items-center">
-                <div className="flex gap-4 items-center">
+                <div onClick={() => setOpenContactInfo(!openContactInfo)} className="flex gap-4 items-center">
                     {/* user image */}
                     {
                         userData?.image === "" ?
@@ -29,7 +34,27 @@ const ChatBox = () => {
                     }
                     <p className="font-bold">{userData?.name}</p>
                 </div>
-                <div>kk</div>
+                <div className="flex gap-6 items-center">
+                    <div className="space-x-4">
+                        <button className="p-2 rounded-full bg-sky-600">
+                            <IoVideocam className="text-lg"></IoVideocam>
+                        </button>
+                        <button className="p-2 rounded-full bg-sky-600">
+                            <IoCall className=""></IoCall>
+                        </button>
+                    </div>
+                    <BsFillInfoCircleFill className="text-2xl"></BsFillInfoCircleFill >
+
+                </div>
+            </div>
+
+            {/* contact info */}
+            <div className={`fixed shadow-xl transition-all duration-500 ${openContactInfo ? "top-20 " : "-top-[500px]"}`}>
+                <ContactInfo
+                    contact={activeChat}
+                    setOpenContactInfo={setOpenContactInfo}
+                    openContactInfo={openContactInfo}
+                ></ContactInfo>
             </div>
 
             {/* Chats */}
