@@ -8,9 +8,8 @@ import useUser from "../../../hooks/useUser";
 
 const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
     const { user } = useAuth();
-    // console.log(user?.email);
     const { data: userData } = useUser(user?.email);
-    // console.log(userData);
+    const addRequests = userData?.addRequests;
     return (
         <div className="w-full h-full py-6 xl:px-4 lg:px-3 md:px-4 px-1 flex flex-col justify-between bg-[#001d3d] text-gray-400 lg:rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
@@ -24,9 +23,10 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                 {/* add requests */}
                 <li
                     onClick={() => setActiveRoute("add-requests")}
-                    className={`md:p-3 p-2 rounded-lg text-white 
+                    className={`md:p-3 p-2 rounded-lg text-white relative
                 ${activeRoute === "add-requests" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <FaUserFriends className="text-2xl"></FaUserFriends>
+                    <span className="bg-red-500 px-[7px] py-[2px] font-semibold rounded-full text-[10px] absolute top-1 right-1">{addRequests?.length}</span>
                 </li>
                 {/*  */}
                 <li

@@ -2,7 +2,7 @@
 
 import useUser from "../../../hooks/useUser";
 
-const ContactInfo = ({ contact, openContactInfo, setOpenContactInfo }) => {
+const ContactInfo = ({ contact, setOpenContactInfo }) => {
     const { data: userData } = useUser(contact)
 
     const handleBlur = (e) => {
@@ -13,7 +13,7 @@ const ContactInfo = ({ contact, openContactInfo, setOpenContactInfo }) => {
             // Check if the new activeElement is a child of the original container
             if (!currentTarget.contains(document.activeElement)) {
                 // You can invoke a callback or add custom logic here
-                // setOpenUserInfo(false)
+                setOpenContactInfo(false)
             }
         }, 0);
     };
