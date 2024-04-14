@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { BsChatRightFill } from "react-icons/bs";
 import { IoMdStar } from "react-icons/io";
-import { FaUser, FaUserFriends } from "react-icons/fa";
+import { FaUserFriends } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import useUser from "../../../hooks/useUser";
 import { useContext } from "react";
@@ -14,7 +14,7 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
     const { data: userData } = useUser(user?.email);
     const addRequests = userData?.addRequests;
     return (
-        <div className="w-full h-full py-6 xl:px-4 lg:px-3 md:px-4 px-1 flex flex-col justify-between bg-[#001d3d] text-gray-400 lg:rounded-2xl">
+        <div className="w-full h-full pt-6 lg:pb-6 pb-4 xl:px-4 lg:px-3 md:px-4 px-1 flex flex-col justify-between bg-[#001d3d] text-gray-400 lg:rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
                 {/* all chats */}
                 <li
@@ -56,11 +56,10 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                             src={userData?.image}
                             className="md:w-9 md:h-9 w-7 h-7 rounded-full" alt="profile" />
                         :
-                        <button
+                        <img
                             onClick={() => setOpenUserInfo(true)}
-                            className="bg-gray-600 p-2 rounded-full text-white">
-                            <FaUser className="md:text-xl text-lg"></FaUser>
-                        </button>
+                            src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
+                            className="md:w-9 md:h-9 w-7 h-7 rounded-full" alt="profile" />
                 }
             </div>
         </div>
