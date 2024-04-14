@@ -12,9 +12,9 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import ContactInfo from "./ContactInfo";
 import toast from "react-hot-toast";
 
-const ChatBox = ({setActiveRoute}) => {
+const ChatBox = () => {
     const [openContactInfo, setOpenContactInfo] = useState(false);
-    const { activeChat } = useContext(ConversationContext);
+    const { activeChat, setActiveChat } = useContext(ConversationContext);
     const { data: userData } = useUser(activeChat)
     const { data: messages, refetch } = useSpecificChats(activeChat);
 
@@ -29,9 +29,13 @@ const ChatBox = ({setActiveRoute}) => {
         <div className="w-full h-screen lg:py-3 lg:pr-3 flex flex-col lg:gap-3">
             {/* User info */}
             <div className="w-full bg-[#001d3d] text-white p-4  lg:rounded-xl flex justify-between items-center">
-                <div className="flex lg:gap-0 gap-4 items-center">
-                    <button onClick={() => setActiveRoute("all-chats")} className=" lg:hidden p-2 rounded-full hover:bg-sky-500">
-                        <IoMdArrowRoundBack className="text-xl"></IoMdArrowRoundBack>
+                <div className="flex md:gap-3 gap-1 items-center">
+                    <button
+                        onClick={() => {
+                            setActiveChat("")
+                        }}
+                        className=" lg:hidden md:p-2 p-1 rounded-full hover:bg-sky-500">
+                        <IoMdArrowRoundBack className="md:text-xl text-lg"></IoMdArrowRoundBack>
                     </button>
                     {/* user image */}
                     <div onClick={() => setOpenContactInfo(!openContactInfo)} className="flex gap-4 items-center">
@@ -47,19 +51,20 @@ const ChatBox = ({setActiveRoute}) => {
                                     src={userData?.image}
                                     alt="" />
                         }
-                        <p className="font-bold">{userData?.name}</p>
+                        <p className="font-bold lg:hidden">{userData?.name?.split(" ")[0]}</p>
+                        <p className="font-bold lg:block hidden">{userData?.name}</p>
                     </div>
                 </div>
-                <div className="flex gap-6 items-center">
-                    <div className="space-x-4">
+                <div className="flex md:gap-6 gap-4 items-center">
+                    <div className="md:space-x-4 space-x-2">
                         <button onClick={handleWorkOnProgress} className="p-2 rounded-full bg-sky-600">
-                            <IoVideocam className="text-lg"></IoVideocam>
+                            <IoVideocam className="md:text-lg"></IoVideocam>
                         </button>
                         <button onClick={handleWorkOnProgress} className="p-2 rounded-full bg-sky-600">
                             <IoCall className=""></IoCall>
                         </button>
                     </div>
-                    <BsFillInfoCircleFill className="text-2xl"></BsFillInfoCircleFill >
+                    <BsFillInfoCircleFill className="md:text-xl text-lg"></BsFillInfoCircleFill >
 
                 </div>
             </div>

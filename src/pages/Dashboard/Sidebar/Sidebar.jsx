@@ -4,10 +4,13 @@ import { IoMdStar } from "react-icons/io";
 import { FaUser, FaUserFriends } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import useUser from "../../../hooks/useUser";
+import { useContext } from "react";
+import { ConversationContext } from "../../../provider/ConversationProvider";
 
 
 const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
     const { user } = useAuth();
+    const { setActiveChat } = useContext(ConversationContext);
     const { data: userData } = useUser(user?.email);
     const addRequests = userData?.addRequests;
     return (
@@ -15,14 +18,20 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
             <ul className="w-full  space-y-5 flex flex-col items-center">
                 {/* all chats */}
                 <li
-                    onClick={() => setActiveRoute("all-chats")}
+                    onClick={() => {
+                        setActiveRoute("all-chats")
+                        setActiveChat("")
+                    }}
                     className={`md:p-3 p-2 rounded-lg text-white 
                 ${activeRoute === "all-chats" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <BsChatRightFill className="text-lg"></BsChatRightFill>
                 </li>
                 {/* add requests */}
                 <li
-                    onClick={() => setActiveRoute("add-requests")}
+                    onClick={() => {
+                        setActiveRoute("add-requests")
+                        setActiveChat("")
+                    }}
                     className={`md:p-3 p-2 rounded-lg text-white relative
                 ${activeRoute === "add-requests" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <FaUserFriends className="text-2xl"></FaUserFriends>
@@ -30,7 +39,10 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                 </li>
                 {/*  */}
                 <li
-                    onClick={() => setActiveRoute("star")}
+                    onClick={() => {
+                        setActiveRoute("star")
+                        setActiveChat("")
+                    }}
                     className={`md:p-3 p-2 rounded-lg text-white 
                 ${activeRoute === "star" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <IoMdStar className="text-2xl"></IoMdStar>
