@@ -13,7 +13,7 @@ const SingleChat = ({ contact }) => {
     const active = activeChat === contact;
     const { data: messages } = useSpecificChats(contact);
     const lastMessage = messages?.slice(-1);
-    console.log(lastMessage);
+    // console.log(lastMessage);
     return (
         <div role="button"
             onClick={() => setActiveChat(contact)}
@@ -41,7 +41,7 @@ const SingleChat = ({ contact }) => {
                 <p className={` pr-4 text-sm ${active ? "text-gray-300" : "text-slate-600"}`}
                 >
                     {
-                        lastMessage ?
+                        lastMessage?.length > 0 ?
                             <>
                                 {
                                     lastMessage[0]?.sender === user?.email ?
