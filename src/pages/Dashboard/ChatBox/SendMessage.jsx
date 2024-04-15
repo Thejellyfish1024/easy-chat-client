@@ -12,11 +12,13 @@ const SendMessage = ({refetch}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        var seconds = new Date().getTime() / 1000;
         // console.log(message);
         const newMessage = {
             sender: user?.email,
             receiver: activeChat,
-            message: message
+            message: message,
+            time: seconds
         }
         const { data } = await axiosSecure.post("/send-message", newMessage);
         // console.log(data);

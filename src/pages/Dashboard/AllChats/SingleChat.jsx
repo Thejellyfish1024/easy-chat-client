@@ -3,11 +3,15 @@ import { FaUser } from "react-icons/fa";
 import useUser from "../../../hooks/useUser";
 import { useContext } from "react";
 import { ConversationContext } from "../../../provider/ConversationProvider";
+import useSpecificChats from "../../../hooks/useSpecificChats";
 
 const SingleChat = ({ contact }) => {
     const { data: userData } = useUser(contact);
     const { activeChat, setActiveChat } = useContext(ConversationContext);
     const active = activeChat === contact;
+    const { data: messages } = useSpecificChats(contact);
+    const lastMessage = messages?.slice(-1);
+    console.log(lastMessage);
     return (
         <div role="button"
             onClick={() => setActiveChat(contact)}
@@ -34,12 +38,18 @@ const SingleChat = ({ contact }) => {
                 {/* message */}
                 <p className={` pr-4 text-sm ${active ? "text-gray-300" : "text-slate-600"}`}
                 >
-                    {/* {contact?.message?.slice(0, 56)}
                     {
-                        contact?.message?.length > 56 &&
-                        <span>...</span>
-                    } */}
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        lastMessage ?
+                            <>
+                                {lastMessage[0]?.message}
+                                {
+                                    lastMessage?.message?.length > 56 &&
+                                    <span>...</span>
+                                }
+                            </>
+                            :
+                            <p>You are connected. You can chat with each other now</p>
+                    }
                 </p>
             </div>
         </div>
