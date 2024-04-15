@@ -21,13 +21,17 @@ const Mobile = () => {
     return (
         <div className="flex lg:gap-6 h-screen bg-[#FFF] rounded-md relative">
             {/* sidebar section*/}
-            <div className="">
-                <Sidebar
-                    setActiveRoute={setActiveRoute}
-                    activeRoute={activeRoute}
-                    setOpenUserInfo={setOpenUserInfo}
-                ></Sidebar>
-            </div>
+            {
+                !activeChat &&
+                
+                <div>
+                    <Sidebar
+                        setActiveRoute={setActiveRoute}
+                        activeRoute={activeRoute}
+                        setOpenUserInfo={setOpenUserInfo}
+                    ></Sidebar>
+                </div>
+            }
 
             {/* chat box and all chats */}
             {

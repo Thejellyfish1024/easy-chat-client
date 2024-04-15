@@ -4,8 +4,10 @@ import useUser from "../../../hooks/useUser";
 import { useContext } from "react";
 import { ConversationContext } from "../../../provider/ConversationProvider";
 import useSpecificChats from "../../../hooks/useSpecificChats";
+import useAuth from "../../../hooks/useAuth";
 
 const SingleChat = ({ contact }) => {
+    const { user } = useAuth();
     const { data: userData } = useUser(contact);
     const { activeChat, setActiveChat } = useContext(ConversationContext);
     const active = activeChat === contact;
@@ -41,9 +43,19 @@ const SingleChat = ({ contact }) => {
                     {
                         lastMessage ?
                             <>
-                                {lastMessage[0]?.message}
                                 {
-                                    lastMessage?.message?.length > 56 &&
+                                    lastMessage[0]?.sender === user?.email ?
+                                        <>
+                                            You: {lastMessage[0]?.message?.slice(0,56)}
+                                        </>
+                                        :
+                                        <>
+                                            {lastMessage[0]?.message?.slice(0,56)}
+                                        </>
+                                }
+
+                                {
+                                    lastMessage[0]?.message?.length > 56 &&
                                     <span>...</span>
                                 }
                             </>

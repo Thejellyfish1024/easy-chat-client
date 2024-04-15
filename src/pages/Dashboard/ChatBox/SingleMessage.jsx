@@ -14,12 +14,14 @@ const SingleMessage = ({ message }) => {
         <div>
             {
                 message?.sender === user?.email ?
-                    <div
-                        ref={scrollRef}
-                        className="flex justify-end w-full">
-                        <div>
-                            <p className="bg-blue-500 text-gray-200 md:py-2 md:px-4 w-fit px-2 py-1  rounded-lg">{message?.message}</p>
-                            <p className="text-right pr-4 text-gray-500 text-[10px] lg:text-[12px] mt-1">3:45</p>
+                    <div className="flex justify-end w-full">
+                        <div
+                            ref={scrollRef}
+                            className="flex justify-end lg:w-3/5 w-4/5">
+                            <div>
+                                <p className="bg-blue-500 text-gray-200 md:py-2 md:px-4 w-fit px-2 py-1  rounded-lg">{message?.message}</p>
+                                <p className="text-right pr-4 text-gray-500 text-[10px] lg:text-[12px] mt-1">3:45</p>
+                            </div>
                         </div>
                     </div>
                     :
@@ -37,7 +39,7 @@ const SingleMessage = ({ message }) => {
                                     <FaUser className="text-sm md:text-base"></FaUser>
                                 </p>
                         }
-                        <div>
+                        <div className="lg:w-3/5 w-4/5">
                             <p className="bg-[#FFF] md:py-2 md:px-4 w-fit px-2 py-1 rounded-lg">{message?.message}</p>
                             <p className="mt-1 pl-4 text-gray-500 text-[10px] lg:text-[12px]">3:45</p>
                         </div>
