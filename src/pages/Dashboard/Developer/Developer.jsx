@@ -18,7 +18,7 @@ const Developer = () => {
                     src={logo}
                     alt="logo" />
                     <h2 className="text-2xl font-bold italic text-blue-500">Easy Chat</h2>
-                <h3 className="text-center font-medium mt-2 text-gray-500">@Developed by <Link className="hover:text-black hover:underline" target="_blank" to="https://webdevshihab.netlify.app/">Mohammad Rahim</Link></h3>
+                <h3 className="text-center font-medium mt-2 text-gray-500">@Developed by <Link className="hover:text-black hover:underline" target="_blank" to="https://my-portfolio-three-rouge-14.vercel.app/">Mohammad Rahim</Link></h3>
             </div>
 
             <div className="absolute bottom-0 w-full p-5">

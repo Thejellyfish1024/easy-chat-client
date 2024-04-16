@@ -81,7 +81,7 @@ const ChatBox = () => {
             {/* Chats */}
             <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md lg:rounded-xl lg:px-4">
                 <div className="flex flex-col px-1 lg:px-0">
-                    <div className="flex-grow lg:h-[78vh] h-[84vh] lg:px-0 px-2">
+                    <div className="flex-grow lg:h-[78vh] h-[84vh] lg:px-0 px-2 py-1">
                         <Messages messages={messages} refetch={refetch}></Messages>
                     </div>
                     <SendMessage refetch={refetch}></SendMessage>
