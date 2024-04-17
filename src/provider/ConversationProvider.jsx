@@ -16,6 +16,7 @@ const ConversationProvider = ({ children }) => {
     );
 
     const [chatLoading, setChatLoading] = useState(false);
+    const [contactsLoading, setContactsLoading] = useState(true);
     const [activeChat, setActiveChat] = useState("");
     const [myContacts, setMyContacts] = useState([]);
     const { user } = useAuth();
@@ -53,6 +54,7 @@ const ConversationProvider = ({ children }) => {
     useEffect(() => {
         if (data) {
             setMyContacts(data?.contacts)
+            setContactsLoading(false);
         }
     }, [data])
 
@@ -63,6 +65,8 @@ const ConversationProvider = ({ children }) => {
         chatLoading,
         setChatLoading,
         myContacts,
+        setContactsLoading,
+        contactsLoading
     }
 
     return <ConversationContext.Provider value={conversationInfo}>
