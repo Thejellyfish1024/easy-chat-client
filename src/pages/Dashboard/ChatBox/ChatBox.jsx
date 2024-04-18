@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const ChatBox = () => {
     const [openContactInfo, setOpenContactInfo] = useState(false);
-    const { activeChat, setActiveChat } = useContext(ConversationContext);
+    const { activeChat, setActiveChat, isLoading } = useContext(ConversationContext);
     const { data: userData } = useUser(activeChat)
     const { data: messages, refetch } = useSpecificChats(activeChat);
 
@@ -82,7 +82,7 @@ const ChatBox = () => {
             <div className="w-full flex-grow  bg-[#d8e2dc] shadow-md lg:rounded-xl lg:px-4">
                 <div className="flex flex-col px-1 lg:px-0">
                     <div className="flex-grow lg:h-[78vh] h-[84vh] lg:px-0 px-2 py-1">
-                        <Messages messages={messages} refetch={refetch}></Messages>
+                        <Messages messages={messages} refetch={refetch} isLoading={isLoading}></Messages>
                     </div>
                     <SendMessage refetch={refetch}></SendMessage>
                 </div>

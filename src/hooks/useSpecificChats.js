@@ -7,7 +7,7 @@ const useSpecificChats = (receiver) => {
     const axiosSecure = useAxiosSecure();
     // console.log(email);
 
-    const {data, refetch} = useQuery({
+    const {data, refetch, isLoading} = useQuery({
         queryKey: ['chats',receiver],
         queryFn: async () =>{
            const data = await axiosSecure.get(`/chats?sender=${sender?.email}&&receiver=${receiver}`)
@@ -16,7 +16,7 @@ const useSpecificChats = (receiver) => {
     })
     // console.log('chat data',data);
 
-    return {data, refetch};
+    return {data, refetch, isLoading};
 };
 
 export default useSpecificChats;
