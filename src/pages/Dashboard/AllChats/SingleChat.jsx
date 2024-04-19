@@ -13,7 +13,9 @@ const SingleChat = ({ contact }) => {
     const active = activeChat === contact;
     const { data: messages } = useSpecificChats(contact);
     const lastMessage = messages?.slice(-1);
-    // console.log(lastMessage);
+    console.log(lastMessage);
+    const messageDate = lastMessage?.[0]?.date?.split(",")[0];
+    console.log(messageDate);
     return (
         <div role="button"
             onClick={() => setActiveChat(contact)}
@@ -34,8 +36,17 @@ const SingleChat = ({ contact }) => {
 
             <div className="w-full">
                 <div className="flex justify-between items-center w-full">
-                    <p className="font-bold">{userData?.name}</p>
-                    <p className={`text-xs font-semibold ${active ? "text-gray-300" : "text-slate-600"}`}>03/30/2024</p>
+                    <p className="font-bold w-3/5">{userData?.name}</p>
+                    <p className={`text-xs font-semibold ${active ? "text-gray-300" : "text-slate-600"}`}>
+                        {
+                            messageDate ?
+                                <>
+                                    {messageDate}
+                                </>
+                                :
+                                <>01/01/2030</>
+                        }
+                    </p>
                 </div>
                 {/* message */}
                 <p className={` pr-4 text-sm ${active ? "text-gray-300" : "text-slate-600"}`}
@@ -46,11 +57,11 @@ const SingleChat = ({ contact }) => {
                                 {
                                     lastMessage[0]?.sender === user?.email ?
                                         <>
-                                            You: {lastMessage[0]?.message?.slice(0,56)}
+                                            You: {lastMessage[0]?.message?.slice(0, 56)}
                                         </>
                                         :
                                         <>
-                                            {lastMessage[0]?.message?.slice(0,56)}
+                                            {lastMessage[0]?.message?.slice(0, 56)}
                                         </>
                                 }
 
