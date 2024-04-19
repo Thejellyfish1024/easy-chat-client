@@ -10,6 +10,7 @@ const SingleMessage = ({ message }) => {
     const { user } = useAuth();
     const { data: userData } = useUser(message?.sender);
     const { scrollRef } = useContext(ConversationContext);
+    const messageTime = message?.date?.split(",")[1]?.split(":");
     return (
         <div>
             {
@@ -20,7 +21,18 @@ const SingleMessage = ({ message }) => {
                             className="flex justify-end lg:w-3/5 w-4/5">
                             <div>
                                 <p className="bg-blue-500 text-gray-200 md:py-2 md:px-4 w-fit px-2 py-1  rounded-lg">{message?.message}</p>
-                                <p className="text-right pr-4 text-gray-500 text-[10px] lg:text-[12px] mt-1">3:45</p>
+                                <p className="text-right pr-4 text-gray-500 text-[10px] lg:text-[12px] mt-1">
+                                    {
+                                        messageTime ?
+                                            <>
+                                                {messageTime[0]}:{messageTime[1]}
+                                            </>
+                                            :
+                                            <>
+                                                0:00
+                                            </>
+                                    }
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +53,18 @@ const SingleMessage = ({ message }) => {
                         }
                         <div className="lg:w-3/5 w-4/5">
                             <p className="bg-[#FFF] md:py-2 md:px-4 w-fit px-2 py-1 rounded-lg">{message?.message}</p>
-                            <p className="mt-1 pl-4 text-gray-500 text-[10px] lg:text-[12px]">3:45</p>
+                            <p className="mt-1 pl-4 text-gray-500 text-[10px] lg:text-[12px]">
+                                {
+                                    messageTime ?
+                                        <>
+                                            {messageTime[0]}:{messageTime[1]}
+                                        </>
+                                        :
+                                        <>
+                                            0:00
+                                        </>
+                                }
+                            </p>
                         </div>
                     </div>
             }

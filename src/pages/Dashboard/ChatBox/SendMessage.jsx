@@ -4,21 +4,25 @@ import { FaArrowUp } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { ConversationContext } from "../../../provider/ConversationProvider";
-const SendMessage = ({refetch}) => {
+const SendMessage = ({ refetch }) => {
     const [message, setMessage] = useState("");
-    const {activeChat} = useContext(ConversationContext);
+    const { activeChat } = useContext(ConversationContext);
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const date = new Date().toLocaleString();
+        // console.log(date);
         var seconds = new Date().getTime() / 1000;
         // console.log(message);
         const newMessage = {
             sender: user?.email,
             receiver: activeChat,
             message: message,
-            time: seconds
+            time: seconds,
+            date: date
         }
         const { data } = await axiosSecure.post("/send-message", newMessage);
         // console.log(data);
