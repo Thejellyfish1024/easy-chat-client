@@ -1,5 +1,5 @@
 // import { Outlet } from "react-router-dom";
-import { useContext,  useState } from "react";
+import { useContext, useState } from "react";
 import AllChats from "./AllChats/AllChats";
 import ChatBox from "./ChatBox/ChatBox";
 import Search from "./Search/Search";
@@ -50,7 +50,10 @@ const Dashboard = () => {
                     {/* Add New Contact Box */}
                     <div
                         className={`fixed shadow-xl transition-all duration-500 left-[450px] ${openAddContact ? "top-8 opacity-100" : "-top-[550px] opacity-0"}`}>
-                        <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
+                        <AddNewContact
+                            openAddContact={openAddContact}
+                            setOpenAddContact={setOpenAddContact}
+                        ></AddNewContact>
                     </div>
                     <Search></Search>
                     <AllChats></AllChats>
@@ -79,7 +82,7 @@ const Dashboard = () => {
             </div>
             {/* userInfo Box */}
             <div tabIndex="1" className={` fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
-               <UserInfo
+                <UserInfo
                     openUserInfo={openUserInfo}
                     setOpenUserInfo={setOpenUserInfo}
                 ></UserInfo>

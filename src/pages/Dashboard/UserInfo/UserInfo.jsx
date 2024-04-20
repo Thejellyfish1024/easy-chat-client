@@ -39,6 +39,19 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
         });
     }
 
+    
+
+    const handleEdit = (ref, setEditInfo) => {
+        setEditInfo(true);
+        setTimeout(() => {
+            handleFocus(ref)
+        }, 0);
+    }
+
+    const handleFocus = (ref) => {
+        ref?.current?.focus();
+    }
+
     const handleBlur = (e) => {
         const currentTarget = e.currentTarget;
 
@@ -51,17 +64,6 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
             }
         }, 0);
     };
-
-    const handleEdit = (ref, setEditInfo) => {
-        setEditInfo(true);
-        setTimeout(() => {
-            handleFocus(ref)
-        }, 0);
-    }
-
-    const handleFocus = (ref) => {
-        ref?.current?.focus();
-    }
 
 
 
