@@ -13,9 +13,39 @@ const SingleChat = ({ contact }) => {
     const active = activeChat === contact;
     const { data: messages } = useSpecificChats(contact);
     const lastMessage = messages?.slice(-1);
-    console.log(lastMessage);
+    // console.log(lastMessage);
     const messageDate = lastMessage?.[0]?.date?.split(",")[0];
-    console.log(messageDate);
+    // console.log(messageDate);
+
+    // Get the current date
+    const today = new Date();
+    // Set the time to midnight to compare only dates
+    today?.setHours(0, 0, 0, 0);
+
+    // Assuming messageDate is the date of the message
+    const setMessageDate = new Date(messageDate); // Example date, replace this with the actual date of the message
+
+    // Set the time to midnight to compare only dates
+    setMessageDate?.setHours(0, 0, 0, 0);
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = today?.getTime() - setMessageDate?.getTime();
+
+    // Convert milliseconds to days
+    const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+    // Determine if the message was sent today, yesterday, or before
+    let messageStatus;
+    if (daysDifference === 0) {
+        messageStatus = "Today";
+    } else if (daysDifference === 1) {
+        messageStatus = "Yesterday";
+    } else {
+        messageStatus = messageDate;
+    }
+
+    // console.log("Message status:", messageStatus);
+
     return (
         <div role="button"
             onClick={() => setActiveChat(contact)}
@@ -41,10 +71,11 @@ const SingleChat = ({ contact }) => {
                         {
                             messageDate ?
                                 <>
-                                    {messageDate}
+                                    {/* {messageDate} */}
+                                    {messageStatus}
                                 </>
                                 :
-                                <>01/01/2030</>
+                                <>00/00/0000</>
                         }
                     </p>
                 </div>
