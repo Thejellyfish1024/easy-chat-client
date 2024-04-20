@@ -7,7 +7,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useUser from "../../../hooks/useUser";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CommonUpdateField from "./CommonUpdateField";
 
 
@@ -20,6 +20,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const nameRef = useRef();
     const aboutRef = useRef();
     const phoneRef = useRef();
+    const modalRef = useRef(null);
 
     const handleLogOut = () => {
         console.log("out");
@@ -64,11 +65,21 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
 
 
 
+    useEffect(() => {
+        if (openUserInfo) {
+            // Set focus to the modal when it opens
+            modalRef?.current?.focus();
+        }
+    }, [openUserInfo]);
+
+
+
     return (
         <div
-            tabIndex="1"
+            ref={modalRef}
+            tabIndex="-1"
             onBlur={handleBlur}
-            className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg md:w-[425px] h-[475px] flex flex-col`}>
+            className={`bg-[#FFF]  z-40 shadow-xl rounded-r-lg md:w-[425px] h-[475px] flex flex-col`}>
             <div className=" flex-grow py-4 md:px-10 px-5">
                 {/* user image */}
                 {
@@ -90,10 +101,11 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                 {
                     editUserName ?
                         <CommonUpdateField
+                            modalRef={modalRef}
                             inputRef={nameRef}
                             setEditInfo={setEditUserName}
                             updateAPI={"update-user-name"}
-                            defaultValue ={userData?.name}
+                            defaultValue={userData?.name}
                         >
                         </CommonUpdateField>
                         :
@@ -111,10 +123,11 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                     {
                         editAbout ?
                             <CommonUpdateField
+                                modalRef={modalRef}
                                 inputRef={aboutRef}
                                 setEditInfo={setEditAbout}
                                 updateAPI={"update-user-about"}
-                                defaultValue ={userData?.about}
+                                defaultValue={userData?.about}
                             >
                             </CommonUpdateField>
                             :
@@ -139,20 +152,21 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                     {
                         editNumber ?
                             <CommonUpdateField
+                                modalRef={modalRef}
                                 inputRef={phoneRef}
                                 setEditInfo={setEditNumber}
                                 updateAPI={"update-user-phone"}
-                                defaultValue ={userData?.phone}
+                                defaultValue={userData?.phone}
                             >
                             </CommonUpdateField>
                             :
                             <div className="flex w-full justify-between mt-1">
                                 {
-                            userData?.phone ?
-                                <p className="text-sm w-3/4">{userData?.phone}</p>
-                                :
-                                <p className="text-sm text-slate-600 font-semibold w-3/4">Add your phone number</p>
-                        }
+                                    userData?.phone ?
+                                        <p className="text-sm w-3/4">{userData?.phone}</p>
+                                        :
+                                        <p className="text-sm text-slate-600 font-semibold w-3/4">Add your phone number</p>
+                                }
                                 <button onClick={() => handleEdit(phoneRef, setEditNumber)} className="p-2 w-fit h-fit hover:bg-gray-200 rounded-lg text-gray-700">
                                     <MdOutlineModeEdit></MdOutlineModeEdit>
                                 </button>

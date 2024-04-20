@@ -1,5 +1,5 @@
 // import { Outlet } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext,  useState } from "react";
 import AllChats from "./AllChats/AllChats";
 import ChatBox from "./ChatBox/ChatBox";
 import Search from "./Search/Search";
@@ -17,6 +17,7 @@ const Dashboard = () => {
     const [openAddContact, setOpenAddContact] = useState(false);
     const [activeRoute, setActiveRoute] = useState("all-chats")
     const { activeChat } = useContext(ConversationContext);
+
 
     return (
         <div className="flex gap-6 max-h-screen bg-[#FFF] rounded-md relative">
@@ -77,8 +78,8 @@ const Dashboard = () => {
                 }
             </div>
             {/* userInfo Box */}
-            <div className={`fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
-                <UserInfo
+            <div tabIndex="1" className={` fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
+               <UserInfo
                     openUserInfo={openUserInfo}
                     setOpenUserInfo={setOpenUserInfo}
                 ></UserInfo>

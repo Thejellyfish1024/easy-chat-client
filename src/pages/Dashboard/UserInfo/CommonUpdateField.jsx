@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUser from "../../../hooks/useUser";
 import toast from "react-hot-toast";
 
-const CommonUpdateField = ({inputRef, setEditInfo, updateAPI, defaultValue}) => {
+const CommonUpdateField = ({inputRef, setEditInfo, updateAPI, defaultValue, modalRef }) => {
     const {user} = useAuth();
     const { refetch } = useUser(user?.email)
     const axiosSecure = useAxiosSecure();
@@ -50,7 +50,10 @@ const CommonUpdateField = ({inputRef, setEditInfo, updateAPI, defaultValue}) => 
             <div className="mt-2">
                 <button onClick={() => handleSave(inputRef)} className="ml-1 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#50B577] text-white rounded-md hover:bg-green-500 ">Save</button>
 
-                <button onClick={() => setEditInfo(false)} className="ml-3 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#ECECEC] rounded-md hover:bg-gray-300  ">Cancel</button>
+                <button onClick={() => {
+                    setEditInfo(false)
+                    modalRef?.current?.focus();
+                }} className="ml-3 font-semibold text-xs w-fit h-fit px-4 py-1 bg-[#ECECEC] rounded-md hover:bg-gray-300  ">Cancel</button>
             </div>
         </div>
     );

@@ -35,7 +35,7 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                     className={`md:p-3 p-2 rounded-lg text-white relative
                 ${activeRoute === "add-requests" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <FaUserFriends className="text-2xl"></FaUserFriends>
-                    <span className="bg-red-500 px-[7px] py-[2px] font-semibold rounded-full text-[10px] absolute top-1 right-1">{addRequests?.length}</span>
+                    <span className="bg-red-500 px-[7px] py-[2px] font-semibold rounded-full text-[10px] absolute top-1 right-1">{addRequests?.length || 0}</span>
                 </li>
                 {/*  */}
                 <li
