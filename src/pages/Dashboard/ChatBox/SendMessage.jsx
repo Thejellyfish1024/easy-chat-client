@@ -38,7 +38,6 @@ const SendMessage = ({ refetch }) => {
                 value={message}
                 onChange={(e) => {
                     setMessage(e?.target?.value)
-                    // handleTextAreaHeight();
                 }}
                 className="w-full border py-2 px-6 bg-[#FFF] rounded-full"
                 placeholder="Message..." />

@@ -75,7 +75,10 @@ const Mobile = () => {
                                     {/* Add New Contact Box */}
                                     <div
                                         className={`fixed shadow-xl transition-all duration-500 right-4 ${openAddContact ? "top-8 opacity-100" : "-top-[575px] opacity-100"}`}>
-                                        <AddNewContact setOpenAddContact={setOpenAddContact}></AddNewContact>
+                                        <AddNewContact 
+                                        openAddContact={openAddContact}
+                                        setOpenAddContact={setOpenAddContact}
+                                        ></AddNewContact>
                                     </div>
                                     <Search></Search>
                                     <AllChats></AllChats>
