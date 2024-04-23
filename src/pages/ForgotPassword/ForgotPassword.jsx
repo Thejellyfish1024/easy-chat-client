@@ -1,33 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import toast from 'react-hot-toast';
+import { useForm } from "react-hook-form";
 import logo from "../../assets/easy-chat-logo.jpg"
+import { Link } from "react-router-dom";
 
-const Login = () => {
-
-    const { signInUser } = useAuth();
-    const navigate = useNavigate();
-
+const ForgotPassword = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
 
 
     const onSubmit = (data) => {
-        // console.log(data)
-
-        signInUser(data.email, data.password)
-            .then(result => {
-                console.log(result.user);
-                toast.success('Successfully logged in')
-                navigate('/')
-                // window.location.reload();
-            })
-            .catch(error => {
-                // console.log(error);
-                toast.error(`${error.message}`)
-            })
+        console.log(data)
     }
+
     return (
         <div className='h-screen'>
             <div className="flex flex-col-reverse lg:flex-row h-screen rounded-lg">
@@ -42,16 +25,17 @@ const Login = () => {
                                 <h4 className="text-4xl font-bold">Easy Chat</h4>
                             </div>
                             <div className="mt-44">
-                                <h2 className="text-5xl font-semibold leading-snug">Welcome back!</h2>
-                                <p className="mt-4 font-medium text-xl">We are glad to see you again! Get access to your Orders, Wishlist and Recommendations.</p>
+                                <h2 className="text-5xl font-semibold leading-snug">Don't worry,</h2>
+                                <p className="mt-4 font-medium text-xl">We are here help you to recover your password.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='w-[50%] flex justify-center items-center'>
                     <div className='w-[65%]'>
-                        <h2 className='text-3xl font-bold mb-6'>Log In</h2>
+                        <h2 className='text-3xl font-bold mb-6'>Reset Password</h2>
 
+                        <p className="text-lg my-4 text-slate-600">Enter the email address or mobile number associated with your account.</p>
                         {/* Register form */}
 
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -60,29 +44,14 @@ const Login = () => {
                                 <input type="email" {...register("email", { required: true })} name="email" placeholder='Enter your email' className='py-3 pl-4 w-full border border-gray-300 mt-3 rounded-md text-lg ' id="" />
                                 {errors.email && <span className='text-red-500'>Email is required</span>}
                             </div>
-                            <div>
-                                <h4 className='font-medium'>Password</h4>
-                                <input type="password" {...register("password", { required: true })} name="password" placeholder='Enter your password' className='py-3 pl-4 w-full border border-gray-300 mt-3 rounded-md text-lg' id="" />
-                                {errors.password && <span className='text-red-500'>Password is required</span>}
-                            </div>
-                            <div className='flex justify-between font-medium'>
-                                <div className='flex gap-2 items-center'>
-                                    <input type="checkbox" name="" className='w-4 h-4' id="" />
-                                    <p className=''>Remember Me</p>
-                                </div>
-                                <p className='underline text-[#0D6EFD]'>
-                                    <Link to={"/forgot-password"}>Forgot Password ?</Link>
-                                </p>
-                            </div>
                             <div className='text-center'>
                                 <button className='hover: bg-[#0D6EFD] w-full py-4 text-white font-bold rounded-lg'>
-                                    Login
+                                    Continue
                                 </button>
                             </div>
                         </form>
-                        <p className='text-center mt-4'> Don't have an account?
-                            <span className='text-[#0D6EFD]'><Link to={'/register'}> Sign up</Link> </span>
-                            now
+                        <p className='text-center mt-4'> Return to
+                            <span className='text-[#0D6EFD]'><Link to={'/login'}> login</Link> </span>
                         </p>
 
                     </div>
@@ -92,4 +61,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ForgotPassword;
