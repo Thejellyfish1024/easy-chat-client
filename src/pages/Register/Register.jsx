@@ -72,8 +72,8 @@ const Register = () => {
                     <div className="absolute h-screen w-full top-0 text-white flex justify-center ">
                         <div className="w-[75%] mt-14">
                             <div className="flex gap-4 items-center">
-                                <img src={logo} className="w-12 h-12 rounded-full" alt="" />
-                                <h4 className="text-3xl font-bold">Easy Chat</h4>
+                                <img src={logo} className="w-[56px] h-[56px] rounded-full" alt="" />
+                                <h4 className="text-4xl font-bold">Easy Chat</h4>
                             </div>
                             <div className="mt-44">
                                 <h2 className="text-5xl font-semibold leading-snug">Looks like you're new here!</h2>
@@ -101,7 +101,7 @@ const Register = () => {
                             </div>
                             <div>
                                 <h4 className='font-medium'>Password</h4>
-                                <input type="password" {...register("password", { required: true })} name="Enter password" placeholder='Enter your password' className='py-3 pl-4 w-full border border-gray-300 mt-3 rounded-md text-lg' id="" />
+                                <input type="password" {...register("password", { required: true })} name="password" placeholder='Enter your password' className='py-3 pl-4 w-full border border-gray-300 mt-3 rounded-md text-lg' id="" />
                                 {errors.password && <span className='text-red-500'>Password is required</span>}
                             </div>
                             <div className='text-center'>
@@ -110,7 +110,7 @@ const Register = () => {
                                 </button>
                             </div>
                         </form>
-                        <p className='text-center mt-4'>Already have an account ?
+                        <p className='text-center mt-4'>Already have an account?
                             <span className='text-[#0D6EFD]'><Link to={'/login'}> Login</Link> </span>
                             now
                         </p>
