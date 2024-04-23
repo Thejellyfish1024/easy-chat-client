@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import logo from "../../assets/easy-chat-logo.jpg"
 const Register = () => {
 
     const axiosSecure = useAxiosSecure();
@@ -66,7 +67,20 @@ const Register = () => {
             <div className="flex flex-col-reverse lg:flex-row h-screen rounded-lg">
                 <div className="w-[50%] relative">
                     <img className='rounded-l-lg h-full hidden md:block object-cover' src="https://harnishdesign.net/demo/html/oxyy/images/login-bg.jpg" alt="" />
-                    <div className="absolute bg-[#0D6EFD] h-screen w-full top-0 opacity-80"></div>
+                    <div className="absolute bg-[#0D6EFD] h-screen w-full top-0 opacity-80">
+                    </div>
+                    <div className="absolute h-screen w-full top-0 text-white flex justify-center ">
+                        <div className="w-[75%] mt-14">
+                            <div className="flex gap-4 items-center">
+                                <img src={logo} className="w-12 h-12 rounded-full" alt="" />
+                                <h4 className="text-3xl font-bold">Easy Chat</h4>
+                            </div>
+                            <div className="mt-44">
+                                <h2 className="text-5xl font-semibold leading-snug">Looks like you're new here!</h2>
+                                <p className="mt-4 font-medium text-xl">Join our group in few minutes! Sign up with your details to get started</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='w-[50%] flex justify-center items-center'>
                     <div className='w-[65%]'>
