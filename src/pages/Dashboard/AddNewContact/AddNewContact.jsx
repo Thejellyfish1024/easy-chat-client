@@ -67,7 +67,7 @@ const AddNewContact = ({ openAddContact, setOpenAddContact }) => {
             <input
                 onChange={(e) => handleInputChange(e)}
                 type="text"
-                className="mt-3 py-1 px-4 rounded-md border border-gray-200 border-b-2 border-b-blue-500"
+                className="mt-3 py-1 px-4 outline-none rounded-md border border-gray-200 border-b-2 border-b-blue-500"
                 placeholder="Search name or email" />
 
             {/* Searched Contacts */}

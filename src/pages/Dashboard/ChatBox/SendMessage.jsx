@@ -39,7 +39,7 @@ const SendMessage = ({ refetch }) => {
                 onChange={(e) => {
                     setMessage(e?.target?.value)
                 }}
-                className="w-full border py-2 px-6 bg-[#FFF] rounded-full"
+                className="w-full border outline-none py-2 px-6 bg-[#FFF] rounded-full"
                 placeholder="Message..." />
             <button
                 disabled={message == "" ? true : false}

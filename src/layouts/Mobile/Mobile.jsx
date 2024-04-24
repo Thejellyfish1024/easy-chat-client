@@ -97,7 +97,7 @@ const Mobile = () => {
 
 
             {/* userInfo Box */}
-            <div className={`fixed shadow-xl pr-7 transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
+            <div tabIndex="1" className={`fixed shadow-xl transition-all duration-500 ${openUserInfo ? "bottom-0 " : "-bottom-[500px]"}`}>
                 <UserInfo
                     openUserInfo={openUserInfo}
                     setOpenUserInfo={setOpenUserInfo}

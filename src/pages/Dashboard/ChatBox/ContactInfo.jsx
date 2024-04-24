@@ -41,20 +41,20 @@ const ContactInfo = ({ contact, setOpenContactInfo, openContactInfo }) => {
                 {
                     userData?.image ?
                         <img
-                            className="w-32 h-32 rounded-full"
+                            className="md:w-32 md:h-32 w-24 h-24 rounded-full"
                             src={userData?.image}
                             alt="profile"
                         />
                         :
                         <img
-                            className="w-32 h-32 rounded-full"
+                            className="md:w-32 md:h-32 w-24 h-24 rounded-full"
                             src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
                             alt="profile"
                         />
                 }
 
                 {/* user name */}
-                <p className="text-lg font-bold mt-3">{userData?.name}</p>
+                <p className="md:text-lg font-bold mt-3">{userData?.name}</p>
 
                 {/* about */}
                 <p className="text-gray-700 mt-3">About</p>

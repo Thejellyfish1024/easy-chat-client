@@ -5,7 +5,7 @@ const Search = () => {
             <span>
                 <IoSearchOutline className="text-lg text-slate-500"></IoSearchOutline>
             </span>
-            <input type="text" className="w-full  rounded-r-xl pl-2 py-2" 
+            <input type="text" className="w-full outline-none rounded-r-xl pl-2 py-2" 
             placeholder="Search" />
         </div>
     );

@@ -9,11 +9,16 @@ import toast from "react-hot-toast";
 import useUser from "../../../hooks/useUser";
 import { useEffect, useRef, useState } from "react";
 import CommonUpdateField from "./CommonUpdateField";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const { logOut, user } = useAuth();
-    const { data: userData } = useUser(user?.email)
+    const { data: userData, refetch } = useUser(user?.email)
     const [editUserName, setEditUserName] = useState(false);
     const [editAbout, setEditAbout] = useState(false);
     const [editNumber, setEditNumber] = useState(false);
@@ -21,6 +26,9 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const aboutRef = useRef();
     const phoneRef = useRef();
     const modalRef = useRef(null);
+    const inputFile = useRef(null);
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const handleLogOut = () => {
         console.log("out");
@@ -38,8 +46,6 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
             }
         });
     }
-
-    
 
     const handleEdit = (ref, setEditInfo) => {
         setEditInfo(true);
@@ -66,7 +72,6 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     };
 
 
-
     useEffect(() => {
         if (openUserInfo) {
             // Set focus to the modal when it opens
@@ -75,29 +80,67 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     }, [openUserInfo]);
 
 
+    const handleUpdateImage = async() => {
+        // `current` points to the mounted file input element
+        inputFile.current.click();
+        const imgFile = inputFile.current.files[0];
+
+        // console.log('img file', imgFile);
+        if (imgFile) {
+            const imageFile = { image: imgFile };
+            const res = await axiosPublic.post(image_hosting_api, imageFile, {
+                headers: {
+                    "content-type": "multipart/form-data",
+                },
+            });
+            const image = res?.data?.data?.url;
+            // console.log(image);
+            const { data } = await axiosSecure.put(`/update-image/${user?.email}`, { image });
+            // console.log('image update', data);
+
+            if (data?.update) {
+                refetch();
+                toast.success('Profile updated');
+            }
+        }
+    };
 
     return (
         <div
             ref={modalRef}
             tabIndex="-1"
             onBlur={handleBlur}
-            className={`bg-[#FFF]  z-40 shadow-xl rounded-r-lg md:w-[425px] h-[475px] flex flex-col`}>
+            className={`bg-[#FFF] z-40  rounded-r-lg md:w-[425px] w-80 h-[475px] flex flex-col`}>
             <div className=" flex-grow py-4 md:px-10 px-5">
                 {/* user image */}
-                {
-                    userData?.image ?
-                        <img
-                            className="w-32 h-32 rounded-full"
-                            src={userData?.image}
-                            alt="profile"
+                <div className="relative w-fit">
+                    {
+                        userData?.image ?
+                            <img
+                                className="md:w-32 md:h-32 w-24 h-24 rounded-full object-cover"
+                                src={userData?.image}
+                                alt="profile"
+                            />
+                            :
+                            <img
+                                className="md:w-32 md:h-32 w-24 h-24  rounded-full"
+                                src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
+                                alt="profile"
+                            />
+                    }
+                    <button
+                        onClick={handleUpdateImage}
+                        className="bg-gray-200 hover:bg-gray-300 p-2 rounded-full  absolute bottom-1 right-1">
+                        <MdOutlineModeEdit className="text-sm"></MdOutlineModeEdit>
+                        <input
+                            type="file"
+                            id="file"
+                            ref={inputFile}
+                            style={{ display: "none" }}
+                            onChange={handleUpdateImage}
                         />
-                        :
-                        <img
-                            className="w-32 h-32 rounded-full"
-                            src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
-                            alt="profile"
-                        />
-                }
+                    </button>
+                </div>
 
                 {/* user name */}
                 {
@@ -112,7 +155,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                         </CommonUpdateField>
                         :
                         <div className="flex w-full justify-between mt-4">
-                            <p className="text-lg font-bold">{userData?.name}</p>
+                            <p className="md:text-lg font-bold">{userData?.name}</p>
                             <button onClick={() => handleEdit(nameRef, setEditUserName)} className="p-2 hover:bg-gray-200 rounded-lg text-gray-700">
                                 <MdOutlineModeEdit></MdOutlineModeEdit>
                             </button>
