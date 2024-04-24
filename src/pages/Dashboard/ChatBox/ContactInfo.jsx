@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
+import { useEffect, useRef } from "react";
 import useUser from "../../../hooks/useUser";
 
-const ContactInfo = ({ contact, setOpenContactInfo }) => {
+const ContactInfo = ({ contact, setOpenContactInfo, openContactInfo }) => {
     const { data: userData } = useUser(contact)
+    const modalRef = useRef();
 
     const handleBlur = (e) => {
         const currentTarget = e.currentTarget;
@@ -19,9 +21,18 @@ const ContactInfo = ({ contact, setOpenContactInfo }) => {
     };
 
 
+    useEffect(() => {
+        if (openContactInfo) {
+            // Set focus to the modal when it opens
+            modalRef?.current?.focus();
+        }
+    }, [openContactInfo]);
+
+
 
     return (
         <div
+            ref={modalRef}
             tabIndex="1"
             onBlur={handleBlur}
             className={`bg-[#FFF] z-40 shadow-xl rounded-r-lg w-80 h-fit flex flex-col p-5`}>
@@ -49,18 +60,18 @@ const ContactInfo = ({ contact, setOpenContactInfo }) => {
                 <p className="text-gray-700 mt-3">About</p>
                 {
                     userData?.about ?
-                    <p className="text-sm font-semibold">{userData?.about}</p>
-                    :
-                    <p className="text-sm mt-1 font-semibold">Not given</p>
+                        <p className="text-sm font-semibold">{userData?.about}</p>
+                        :
+                        <p className="text-sm mt-1 font-semibold">Not given</p>
                 }
 
                 {/* phone number */}
                 <p className="text-gray-700 mt-3">Phone number</p>
                 {
                     userData?.phone ?
-                    <p className="text-sm font-semibold">{userData?.phone}</p>
-                    :
-                    <p className="text-sm mt-1 font-semibold">Not given</p>
+                        <p className="text-sm font-semibold">{userData?.phone}</p>
+                        :
+                        <p className="text-sm mt-1 font-semibold">Not given</p>
                 }
             </div>
         </div>
