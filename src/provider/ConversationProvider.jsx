@@ -8,7 +8,7 @@ import useSpecificChats from "../hooks/useSpecificChats";
 export const ConversationContext = createContext(null);
 
 const ConversationProvider = ({ children }) => {
-    // const socket = useMemo(() => io("https://easy-chat-server.vercel.app", { withCredentials: true, }),
+    // const socket = useMemo(() => io("wss://easy-chat-server.vercel.app", { withCredentials: true, }),
     //     []
     // );
     const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
