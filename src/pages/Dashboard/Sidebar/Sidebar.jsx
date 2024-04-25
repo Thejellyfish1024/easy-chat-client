@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import useUser from "../../../hooks/useUser";
 import { useContext } from "react";
 import { ConversationContext } from "../../../provider/ConversationProvider";
+import { motion } from "framer-motion"
 
 
 const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
@@ -17,7 +18,8 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
         <div className="w-full h-full pt-6 lg:pb-6 pb-4 xl:px-4 lg:px-3 md:px-4 px-1 flex flex-col justify-between bg-[#001d3d] text-gray-400 lg:rounded-2xl">
             <ul className="w-full  space-y-5 flex flex-col items-center">
                 {/* all chats */}
-                <li
+                <motion.li
+                    whileTap={{ scale: 0.75, onDurationChange: 500 }}
                     onClick={() => {
                         setActiveRoute("all-chats")
                         setActiveChat("")
@@ -25,9 +27,10 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                     className={`md:p-3 p-2 rounded-lg text-white 
                 ${activeRoute === "all-chats" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <BsChatRightFill className="text-lg"></BsChatRightFill>
-                </li>
+                </motion.li>
                 {/* add requests */}
-                <li
+                <motion.li
+                    whileTap={{ scale: 0.75, onDurationChange: 500 }}
                     onClick={() => {
                         setActiveRoute("add-requests")
                         setActiveChat("")
@@ -36,9 +39,10 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                 ${activeRoute === "add-requests" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <FaUserFriends className="text-2xl"></FaUserFriends>
                     <span className="bg-red-500 px-[7px] py-[2px] font-semibold rounded-full text-[10px] absolute top-1 right-1">{addRequests?.length || 0}</span>
-                </li>
+                </motion.li>
                 {/*  */}
-                <li
+                <motion.li
+                    whileTap={{ scale: 0.75, onDurationChange: 500 }}
                     onClick={() => {
                         setActiveRoute("star")
                         setActiveChat("")
@@ -46,17 +50,19 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                     className={`md:p-3 p-2 rounded-lg text-white 
                 ${activeRoute === "star" ? "bg-[#0077b6]" : "hover:bg-[#0077b6]"}`}>
                     <IoMdStar className="text-2xl"></IoMdStar>
-                </li>
+                </motion.li>
             </ul>
             <div className="flex w-full items-end justify-center">
                 {
                     userData?.image ?
-                        <img
+                        <motion.img
+                            whileTap={{ scale: 0.75, onDurationChange: 500 }}
                             onClick={() => setOpenUserInfo(true)}
                             src={userData?.image}
                             className="md:w-9 md:h-9 w-7 h-7 rounded-full" alt="profile" />
                         :
-                        <img
+                        <motion.img
+                            whileTap={{ scale: 0.75, onDurationChange: 500 }}
                             onClick={() => setOpenUserInfo(true)}
                             src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
                             className="md:w-9 md:h-9 w-7 h-7 rounded-full" alt="profile" />

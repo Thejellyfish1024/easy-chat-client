@@ -47,10 +47,10 @@ const ConversationProvider = ({ children }) => {
 
     useEffect(() => {
         socket?.on("getMessage", data => {
-            // console.log(data?.refetch);
+            // console.log(data);
             if (data?.refetch) {
-                const sound = new Audio(notificationSound);
                 refetch();
+                const sound = new Audio(notificationSound);
                 sound.play();
             }
 

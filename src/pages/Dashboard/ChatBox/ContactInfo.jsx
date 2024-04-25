@@ -15,7 +15,9 @@ const ContactInfo = ({ contact, setOpenContactInfo, openContactInfo }) => {
             // Check if the new activeElement is a child of the original container
             if (!currentTarget.contains(document.activeElement)) {
                 // You can invoke a callback or add custom logic here
-                setOpenContactInfo(false)
+                setTimeout(() => {
+                    setOpenContactInfo(false)
+                }, 100);
             }
         }, 0);
     };

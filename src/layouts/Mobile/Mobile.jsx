@@ -11,6 +11,7 @@ import AllChats from "../../pages/Dashboard/AllChats/AllChats";
 import ChatBox from "../../pages/Dashboard/ChatBox/ChatBox";
 import UserInfo from "../../pages/Dashboard/UserInfo/UserInfo";
 import AddRequests from "../../pages/Dashboard/AddRequests/AddRequests";
+import { motion } from "framer-motion"
 
 const Mobile = () => {
     const [openUserInfo, setOpenUserInfo] = useState(false);
@@ -23,7 +24,7 @@ const Mobile = () => {
             {/* sidebar section*/}
             {
                 !activeChat &&
-                
+
                 <div>
                     <Sidebar
                         setActiveRoute={setActiveRoute}
@@ -65,19 +66,20 @@ const Mobile = () => {
                                             <img src={logo} className="w-10" alt="" />
                                             <h3 className="text-xl font-bold">Chats</h3>
                                         </div>
-                                        <button
+                                        <motion.button
+                                            whileTap={{ scale: 0.75, onDurationChange: 500 }}
                                             className="text-blue-500"
                                             type="button"
                                             onClick={() => setOpenAddContact(!openAddContact)}>
                                             <IoMdAddCircle className="text-2xl"></IoMdAddCircle>
-                                        </button>
+                                        </motion.button>
                                     </div>
                                     {/* Add New Contact Box */}
                                     <div
                                         className={`fixed shadow-xl transition-all duration-500 right-4 ${openAddContact ? "top-8 opacity-100" : "-top-[575px] opacity-100"}`}>
-                                        <AddNewContact 
-                                        openAddContact={openAddContact}
-                                        setOpenAddContact={setOpenAddContact}
+                                        <AddNewContact
+                                            openAddContact={openAddContact}
+                                            setOpenAddContact={setOpenAddContact}
                                         ></AddNewContact>
                                     </div>
                                     <Search></Search>

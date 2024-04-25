@@ -11,6 +11,7 @@ import { ConversationContext } from "../../provider/ConversationProvider";
 import logo from "../../assets/easy-chat-logo.jpg"
 import { Link } from "react-router-dom";
 import AddRequests from "./AddRequests/AddRequests";
+import { motion } from "framer-motion"
 
 const Dashboard = () => {
     const [openUserInfo, setOpenUserInfo] = useState(false);
@@ -40,12 +41,13 @@ const Dashboard = () => {
                             <img src={logo} className="w-10" alt="" />
                             <h3 className="text-xl  font-bold">Chats</h3>
                         </div>
-                        <button
+                        <motion.button
+                            whileTap={{ scale: 0.75, onDurationChange: 500 }}
                             className="text-blue-500"
                             type="button"
                             onClick={() => setOpenAddContact(!openAddContact)}>
                             <IoMdAddCircle className="text-2xl"></IoMdAddCircle>
-                        </button>
+                        </motion.button>
                     </div>
                     {/* Add New Contact Box */}
                     <div

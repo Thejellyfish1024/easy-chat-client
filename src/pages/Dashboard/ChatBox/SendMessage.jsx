@@ -4,9 +4,11 @@ import { FaArrowUp } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { ConversationContext } from "../../../provider/ConversationProvider";
+
+
 const SendMessage = ({ refetch }) => {
     const [message, setMessage] = useState("");
-    const [btnEffect, setBtnEffect] = useState(false);
+    const [messageLoading, setMessageLoading] = useState(false);
     const { activeChat } = useContext(ConversationContext);
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -14,10 +16,7 @@ const SendMessage = ({ refetch }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setBtnEffect(true)
-        setTimeout(() => {
-            setBtnEffect(false)
-        }, 200);
+        setMessageLoading(true);
 
         const date = new Date().toLocaleString();
         // console.log(date);
@@ -34,6 +33,7 @@ const SendMessage = ({ refetch }) => {
         // console.log(data);
         if (data?.insertedId) {
             refetch();
+            setMessageLoading(false)
             setMessage("");
         }
 
@@ -49,8 +49,14 @@ const SendMessage = ({ refetch }) => {
                 placeholder="Message..." />
             <button
                 disabled={message == "" ? true : false}
-                className={` px-3 py-1 text-white duration-150 transition-all rounded-full ${message == "" ? "bg-slate-300" : `bg-blue-500 ${btnEffect ? "-translate-y-2" : ""}`}`}>
-                <FaArrowUp></FaArrowUp>
+                className={` px-3 py-1 text-white duration-150 transition-all rounded-full ${message == "" ? "bg-slate-300" : `bg-blue-500`}`}>
+                {
+                    messageLoading ?
+                        <span className="loading loading-spinner loading-xs text-white"></span>
+                        :
+
+                        <FaArrowUp></FaArrowUp>
+                }
             </button>
         </form>
     );

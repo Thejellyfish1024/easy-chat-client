@@ -14,7 +14,7 @@ const SingleMessage = ({ message, refetch }) => {
     const [openMessageUpdate, setOpenMessageUpdate] = useState(false);
     const { user } = useAuth();
     const { data: userData } = useUser(message?.sender);
-    const { scrollRef } = useContext(ConversationContext);
+    const { scrollRef} = useContext(ConversationContext);
     const messageTime = message?.date?.split(",")[1]?.split(":");
     const modalRef = useRef();
     const axiosSecure = useAxiosSecure();
@@ -116,8 +116,10 @@ const SingleMessage = ({ message, refetch }) => {
                                     <FaUser className="text-sm md:text-base"></FaUser>
                                 </p>
                         }
-                        <div className="lg:w-3/5 w-4/5">
-                            <p className="bg-[#FFF] md:py-2 md:px-4 w-fit px-2 py-1 rounded-lg">{message?.message}</p>
+                        <div className="lg:w-3/5 w-4/5 ">
+                            <p
+                                className={`bg-[#FFF] md:py-2 md:px-4 w-fit px-2 py-1 rounded-lg $  `}
+                            >{message?.message}</p>
                             <p className="mt-1 pl-4 text-gray-500 text-[10px] lg:text-[12px]">
                                 {
                                     messageTime ?

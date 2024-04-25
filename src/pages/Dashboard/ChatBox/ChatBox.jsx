@@ -11,6 +11,7 @@ import { BsFillInfoCircleFill } from "react-icons/bs";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import ContactInfo from "./ContactInfo";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion"
 
 const ChatBox = () => {
     const [openContactInfo, setOpenContactInfo] = useState(false);
@@ -41,12 +42,14 @@ const ChatBox = () => {
                     <div onClick={() => setOpenContactInfo(!openContactInfo)} className="flex gap-4 items-center">
                         {
                             userData?.image === "" ?
-                                <img
+                                <motion.img
+                                    whileTap={{ scale: 0.75, onDurationChange: 500 }}
                                     className="xl:w-10 w-8 xl:h-10 h-8 rounded-full"
                                     src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
                                     alt="" />
                                 :
-                                <img
+                                <motion.img
+                                    whileTap={{ scale: 0.75, onDurationChange: 500 }}
                                     className="xl:w-10 w-8 xl:h-10 h-8 rounded-full"
                                     src={userData?.image}
                                     alt="" />
