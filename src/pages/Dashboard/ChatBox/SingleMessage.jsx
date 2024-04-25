@@ -7,6 +7,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { ConversationContext } from "../../../provider/ConversationProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const SingleMessage = ({ message, refetch }) => {
     // console.log(message);
@@ -53,11 +54,7 @@ const SingleMessage = ({ message, refetch }) => {
                 // console.log(data);
                 if (data?.deletedCount) {
                     refetch();
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
+                    toast.success('Message deleted');
                 }
             }
         });

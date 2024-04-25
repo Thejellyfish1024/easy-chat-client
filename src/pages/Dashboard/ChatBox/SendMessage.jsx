@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { ConversationContext } from "../../../provider/ConversationProvider";
 const SendMessage = ({ refetch }) => {
     const [message, setMessage] = useState("");
+    const [btnEffect, setBtnEffect] = useState(false);
     const { activeChat } = useContext(ConversationContext);
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -13,6 +14,11 @@ const SendMessage = ({ refetch }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setBtnEffect(true)
+        setTimeout(() => {
+            setBtnEffect(false)
+        }, 200);
+
         const date = new Date().toLocaleString();
         // console.log(date);
         var seconds = new Date().getTime() / 1000;
@@ -43,7 +49,7 @@ const SendMessage = ({ refetch }) => {
                 placeholder="Message..." />
             <button
                 disabled={message == "" ? true : false}
-                className={` px-3 py-1 text-white rounded-full ${message == "" ? "bg-slate-300" : "bg-blue-500"}`}>
+                className={` px-3 py-1 text-white duration-150 transition-all rounded-full ${message == "" ? "bg-slate-300" : `bg-blue-500 ${btnEffect ? "-translate-y-2" : ""}`}`}>
                 <FaArrowUp></FaArrowUp>
             </button>
         </form>
