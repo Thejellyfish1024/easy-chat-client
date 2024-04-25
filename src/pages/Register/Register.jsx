@@ -6,8 +6,10 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import logo from "../../assets/easy-chat-logo.jpg"
+import { useState } from "react";
 const Register = () => {
 
+    const [registerLoading, setRegisterLoading] = useState(false);
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate()
 
@@ -34,6 +36,7 @@ const Register = () => {
         // if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\|]).{6,}$/.test(data?.password)) {
         //     return toast.error('Password have to be minimum 6 characters . It should include capital letter and special character')
         // }
+        setRegisterLoading(true);
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result.user);
@@ -51,12 +54,14 @@ const Register = () => {
 
                 saveUserInfoDataBase(user);
                 logOut()
+                setRegisterLoading(false);
                 toast.success('User Created Successfully')
 
                 navigate('/login')
 
             })
             .catch(error => {
+                setRegisterLoading(false);
                 console.log(error);
                 toast.error(`${error.message}`)
             })
@@ -106,7 +111,14 @@ const Register = () => {
                             </div>
                             <div className='text-center'>
                                 <button className='hover: bg-[#0D6EFD] w-full py-4 text-white font-bold rounded-lg'>
-                                    Register
+
+                                    {
+                                        registerLoading ?
+                                            <span className="loading loading-spinner loading-sm text-white"></span>
+                                            :
+
+                                            "Register"
+                                    }
                                 </button>
                             </div>
                         </form>

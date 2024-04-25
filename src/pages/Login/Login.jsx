@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import logo from "../../assets/easy-chat-logo.jpg"
+import { useState } from 'react';
 
 const Login = () => {
 
+    const [loginLoading, setLoginLoading] = useState(false);
     const { signInUser } = useAuth();
     const navigate = useNavigate();
 
@@ -15,9 +17,11 @@ const Login = () => {
 
     const onSubmit = (data) => {
         // console.log(data)
+        setLoginLoading(true);
 
         signInUser(data.email, data.password)
             .then(result => {
+                setLoginLoading(false);
                 console.log(result.user);
                 toast.success('Successfully logged in')
                 navigate('/')
@@ -25,6 +29,7 @@ const Login = () => {
             })
             .catch(error => {
                 // console.log(error);
+                setLoginLoading(false);
                 toast.error(`${error.message}`)
             })
     }
@@ -76,7 +81,13 @@ const Login = () => {
                             </div>
                             <div className='text-center'>
                                 <button className='hover: bg-[#0D6EFD] w-full py-4 text-white font-bold rounded-lg'>
-                                    Login
+                                    {
+                                        loginLoading ?
+                                            <span className="loading loading-spinner loading-sm text-white"></span>
+                                            :
+
+                                            "Login"
+                                    }
                                 </button>
                             </div>
                         </form>

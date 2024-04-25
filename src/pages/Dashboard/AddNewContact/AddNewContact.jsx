@@ -39,7 +39,9 @@ const AddNewContact = ({ openAddContact, setOpenAddContact }) => {
             // Check if the new activeElement is a child of the original container
             if (!currentTarget.contains(document.activeElement)) {
                 // You can invoke a callback or add custom logic here
-                setOpenAddContact(false)
+                setTimeout(() => {
+                    setOpenAddContact(false)
+                }, 100);
             }
         }, 0);
     };
