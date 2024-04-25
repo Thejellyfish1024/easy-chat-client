@@ -1,20 +1,15 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useMemo,useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useUser from "../hooks/useUser";
 import { io } from "socket.io-client";
 import useSpecificChats from "../hooks/useSpecificChats";
+import notificationSound from "../assets/sounds/notification.mp3"
 
 export const ConversationContext = createContext(null);
 
 const ConversationProvider = ({ children }) => {
-    // const socket = useMemo(() => io("wss://easy-chat-server.vercel.app", { withCredentials: true, }),
-    //     []
-    // );
-    const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
-        []
-    );
-
+    // const [socket, setSocket] = useState(null);
     const [chatLoading, setChatLoading] = useState(false);
     const [contactsLoading, setContactsLoading] = useState(true);
     const [activeChat, setActiveChat] = useState("");
@@ -23,21 +18,40 @@ const ConversationProvider = ({ children }) => {
     const { data } = useUser(user?.email);
     const { refetch } = useSpecificChats(activeChat);
 
-    // useEffect(() => {
-    //     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-    // }, [conversations])
+    // const socket = useMemo(() => io("https://easy-chat-server.vercel.app", { withCredentials: true, }),
+    //     []
+    // );
+    const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
+        []
+    );
 
     // useEffect(() => {
-    //     socket?.on("connect", () => {
-    //         console.log("connected", socket.id);
-    //     })
-    // }, [])
+    // 	if (user) {
+    // 		const socket = io("http://localhost:5000", { withCredentials: true, });
+
+    // 		setSocket(socket);
+
+    // 		// socket.on() is used to listen to the events. can be used both on client and server side
+    // 		// socket.on("getOnlineUsers", (users) => {
+    // 		// 	setOnlineUsers(users);
+    // 		// });
+
+    // 		return () => socket.close();
+    // 	} else {
+    // 		if (socket) {
+    // 			socket.close();
+    // 			setSocket(null);
+    // 		}
+    // 	}
+    // }, [user]);
 
     useEffect(() => {
         socket?.on("getMessage", data => {
             // console.log(data?.refetch);
-            if(data?.refetch){
+            if (data?.refetch) {
+                const sound = new Audio(notificationSound);
                 refetch();
+                sound.play();
             }
 
         });

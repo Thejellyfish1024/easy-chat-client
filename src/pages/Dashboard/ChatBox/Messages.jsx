@@ -16,6 +16,8 @@ const Messages = ({ messages, refetch, isLoading }) => {
         scrollToBottom()
     }, [messages]);
 
+    // reactScrollToBottom
+
     return (
         <div className="h-full flex flex-col justify-end">
             {
