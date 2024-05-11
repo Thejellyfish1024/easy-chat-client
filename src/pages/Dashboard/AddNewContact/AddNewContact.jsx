@@ -17,7 +17,7 @@ const AddNewContact = ({ openAddContact, setOpenAddContact }) => {
 
     const handleInputChange = async (e) => {
         let query = e?.target?.value;
-        // console.log("query", query);
+        console.log("query", query);
 
         if (query === "") {
             setOpenSuggestions(false);
@@ -26,9 +26,9 @@ const AddNewContact = ({ openAddContact, setOpenAddContact }) => {
             setOpenSuggestions(true);
         }
 
-        const res = await axiosSecure.get(`/users-search?query=${query}&&email=${user?.email}`);
+        const res = await axiosSecure.get(`/users/search?query=${query}&&email=${user?.email}`);
         // console.log(res?.data);
-        setSearchedContacts(res.data);
+        setSearchedContacts(res?.data?.data);
     };
 
     const handleBlur = (e) => {
