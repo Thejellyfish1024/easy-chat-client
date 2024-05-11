@@ -95,7 +95,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
             });
             const image = res?.data?.data?.url;
             // console.log(image);
-            const { data } = await axiosSecure.put(`/update-image/${user?.email}`, { image });
+            const { data } = await axiosSecure.put(`/users/update-user/${user?.email}`, { image });
             // console.log('image update', data);
 
             if (data?.update) {
@@ -148,8 +148,8 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                         <CommonUpdateField
                             modalRef={modalRef}
                             inputRef={nameRef}
+                            field = "name"
                             setEditInfo={setEditUserName}
-                            updateAPI={"update-user-name"}
                             defaultValue={userData?.name}
                         >
                         </CommonUpdateField>
@@ -170,8 +170,8 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                             <CommonUpdateField
                                 modalRef={modalRef}
                                 inputRef={aboutRef}
+                                field = "about"
                                 setEditInfo={setEditAbout}
-                                updateAPI={"update-user-about"}
                                 defaultValue={userData?.about}
                             >
                             </CommonUpdateField>
@@ -199,8 +199,8 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                             <CommonUpdateField
                                 modalRef={modalRef}
                                 inputRef={phoneRef}
+                                field = "phone"
                                 setEditInfo={setEditNumber}
-                                updateAPI={"update-user-phone"}
                                 defaultValue={userData?.phone}
                             >
                             </CommonUpdateField>

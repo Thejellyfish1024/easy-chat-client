@@ -4,23 +4,33 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUser from "../../../hooks/useUser";
 import toast from "react-hot-toast";
 
-const CommonUpdateField = ({inputRef, setEditInfo, updateAPI, defaultValue, modalRef }) => {
-    const {user} = useAuth();
+const CommonUpdateField = ({ inputRef, field, setEditInfo, defaultValue, modalRef }) => {
+    const { user } = useAuth();
     const { refetch } = useUser(user?.email)
     const axiosSecure = useAxiosSecure();
-    
+
     const handleSave = (ref) => {
-        const updatedSection = ref?.current?.value;
-        console.log(updatedSection);
-        if (updatedSection === "") {
+        let updatedValue = ref?.current?.value;
+        // console.log(updatedValue);
+        if (updatedValue === "") {
             return toast.error(`Field can not be empty!`)
+        }
+        let updatedSection = {};
+        if (field === "name") {
+            updatedSection = { name: ref?.current?.value }
+        }
+        if (field === "about") {
+            updatedSection = { about: ref?.current?.value }
+        }
+        if (field === "phone") {
+            updatedSection = { phone: ref?.current?.value }
         }
         // console.log(updatedSection);
 
-        axiosSecure?.put(`/${updateAPI}/${user?.email}`, { updatedSection })
+        axiosSecure?.put(`/users/update-user/${user?.email}`, updatedSection)
             .then(res => {
                 // console.log(res?.data);
-                if (res?.data?.modifiedCount) {
+                if (res?.data?.update) {
                     refetch();
                     setEditInfo(false);
                 }
