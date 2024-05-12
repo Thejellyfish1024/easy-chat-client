@@ -12,8 +12,8 @@ const SingleRequest = ({ request, refetch }) => {
     const axiosSecure = useAxiosSecure();
 
     const handleAccept = async() => {
-        const res = await axiosSecure.post("/add-contact", { newContact: request, currentUser: user?.email })
-            // console.log(res?.data);
+        const res = await axiosSecure.put("/users/add-contact", { newContact: request, currentUser: user?.email })
+            console.log(res?.data);
             if (res?.data?.update) {
                 refetch();
                 toast.success('Successfully added');
@@ -21,9 +21,9 @@ const SingleRequest = ({ request, refetch }) => {
     }
 
     const handleDecline = async() => {
-        const res = await axiosSecure.put(`/delete-request/${user?.email}`, { request: request})
+        const res = await axiosSecure.put(`/users/delete-request/${user?.email}`, { request: request})
         // console.log(res?.data);
-        if (res?.data?.modifiedCount) {
+        if (res?.data?.update) {
             refetch();
             toast.success('Successfully deleted');
         }

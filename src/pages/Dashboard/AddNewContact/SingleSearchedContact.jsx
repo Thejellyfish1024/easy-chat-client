@@ -21,7 +21,7 @@ const SingleSearchedContact = ({ contact }) => {
 
 
   const handleRequestContact = async () => {
-    const res = await axiosSecure.put(`/contact-request`, { requestFrom: user?.email, requestTo: contact?.email })
+    const res = await axiosSecure.put(`/users/add-request`, { requestFrom: user?.email, requestTo: contact?.email })
     // console.log(res?.data);
     if (res?.data?.update) {
       refetch();

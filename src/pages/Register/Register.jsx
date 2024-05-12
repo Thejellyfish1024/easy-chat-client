@@ -22,9 +22,9 @@ const Register = () => {
 
         // check user exist or not
         const { data } = await axiosSecure.get(`/users/${user?.email}`)
-        // console.log('is exist', data);
+        console.log('is exist', data);
 
-        if (!data) {
+        if (!data?.exist) {
             // post user data database
             await axiosSecure.post("/users", user);
         }
