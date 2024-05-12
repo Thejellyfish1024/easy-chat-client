@@ -17,7 +17,7 @@ const AddNewContact = ({ openAddContact, setOpenAddContact }) => {
 
     const handleInputChange = async (e) => {
         let query = e?.target?.value;
-        console.log("query", query);
+        // console.log("query", query);
 
         if (query === "") {
             setOpenSuggestions(false);

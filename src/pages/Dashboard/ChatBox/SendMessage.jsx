@@ -29,9 +29,9 @@ const SendMessage = ({ refetch }) => {
             time: seconds,
             date: date
         }
-        const { data } = await axiosSecure.post("/send-message", newMessage);
+        const { data } = await axiosSecure.post("/chats", newMessage);
         // console.log(data);
-        if (data?.insertedId) {
+        if (data?.insert) {
             refetch();
             setMessageLoading(false)
             setMessage("");

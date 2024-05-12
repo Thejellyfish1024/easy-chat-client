@@ -50,9 +50,9 @@ const SingleMessage = ({ message, refetch }) => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axiosSecure.delete(`/delete-message/${message?._id}`)
+                const { data } = await axiosSecure.delete(`/chats/${message?._id}`)
                 // console.log(data);
-                if (data?.deletedCount) {
+                if (data?.deleted) {
                     refetch();
                     toast.success('Message deleted');
                 }

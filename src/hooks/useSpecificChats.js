@@ -14,7 +14,7 @@ const useSpecificChats = (receiver) => {
            return await data.data;
         }
     })
-    // console.log('chat data',data);
+    console.log('chat data',data);
 
     return {data, refetch, isLoading};
 };

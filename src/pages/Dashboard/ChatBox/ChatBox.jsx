@@ -17,7 +17,8 @@ const ChatBox = () => {
     const [openContactInfo, setOpenContactInfo] = useState(false);
     const { activeChat, setActiveChat, isLoading } = useContext(ConversationContext);
     const { data: userData } = useUser(activeChat)
-    const { data: messages, refetch } = useSpecificChats(activeChat);
+    const { data , refetch } = useSpecificChats(activeChat);
+    const messages = data?.data;
 
     const handleWorkOnProgress = () => {
         toast('This feature is currently under development!',

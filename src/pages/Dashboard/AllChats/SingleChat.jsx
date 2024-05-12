@@ -11,7 +11,8 @@ const SingleChat = ({ contact }) => {
     const { data: userData } = useUser(contact);
     const { activeChat, setActiveChat } = useContext(ConversationContext);
     const active = activeChat === contact;
-    const { data: messages } = useSpecificChats(contact);
+    const { data } = useSpecificChats(contact);
+    const messages = data?.data;
     const lastMessage = messages?.slice(-1);
     // console.log(lastMessage);
     const messageDate = lastMessage?.[0]?.date?.split(",")[0];
