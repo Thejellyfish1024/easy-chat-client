@@ -30,7 +30,7 @@ const SendMessage = ({ refetch }) => {
             date: date
         }
         const { data } = await axiosSecure.post("/chats", newMessage);
-        // console.log(data);
+        // console.log("data", data);
         if (data?.insert) {
             refetch();
             setMessageLoading(false)

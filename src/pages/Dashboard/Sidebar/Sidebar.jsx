@@ -59,13 +59,13 @@ const Sidebar = ({ setOpenUserInfo, activeRoute, setActiveRoute }) => {
                             whileTap={{ scale: 0.75, onDurationChange: 500 }}
                             onClick={() => setOpenUserInfo(true)}
                             src={userData?.image}
-                            className="md:w-9 md:h-9 w-7 h-7 rounded-full" alt="profile" />
+                            className="md:w-9 md:h-9 w-7 h-7 object-cover rounded-full" alt="profile" />
                         :
                         <motion.img
                             whileTap={{ scale: 0.75, onDurationChange: 500 }}
                             onClick={() => setOpenUserInfo(true)}
                             src="https://a0.anyrgb.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle-thumbnail.png"
-                            className="md:w-9 md:h-9 w-7 h-7 rounded-full" alt="profile" />
+                            className="md:w-9 md:h-9 w-7 h-7 object-cover rounded-full" alt="profile" />
                 }
             </div>
         </div>

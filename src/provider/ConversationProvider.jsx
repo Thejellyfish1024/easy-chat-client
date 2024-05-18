@@ -47,7 +47,7 @@ const ConversationProvider = ({ children }) => {
 
     useEffect(() => {
         socket?.on("getMessage", data => {
-            // console.log(data);
+            console.log(data);
             if (data?.refetch) {
                 refetch();
                 const sound = new Audio(notificationSound);
