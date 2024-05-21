@@ -18,12 +18,12 @@ const ConversationProvider = ({ children }) => {
     const { data } = useUser(user?.email);
     const { refetch } = useSpecificChats(activeChat);
 
-    // const socket = useMemo(() => io("https://easy-chat-server.vercel.app", { withCredentials: true, }),
-    //     []
-    // );
-    const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
+    const socket = useMemo(() => io("wss://easy-chat-server.vercel.app", { withCredentials: true, }),
         []
     );
+    // const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
+    //     []
+    // );
 
     // useEffect(() => {
     // 	if (user) {
