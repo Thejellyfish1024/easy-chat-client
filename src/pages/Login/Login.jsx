@@ -9,29 +9,34 @@ import { useState } from 'react';
 const Login = () => {
 
     const [loginLoading, setLoginLoading] = useState(false);
-    const { signInUser } = useAuth();
+    const { signInUser, logOut } = useAuth();
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         // console.log(data)
         setLoginLoading(true);
-
-        signInUser(data.email, data.password)
-            .then(result => {
+        
+        try {
+            const result = await signInUser(data.email, data.password);
+            
+            if (!result?.user?.emailVerified) {
                 setLoginLoading(false);
-                console.log(result.user);
-                toast.success('Successfully logged in')
-                navigate('/')
-                // window.location.reload();
-            })
-            .catch(error => {
-                // console.log(error);
-                setLoginLoading(false);
-                toast.error(`${error.message}`)
-            })
+                logOut()
+                return toast.error('Please verify your email first!');
+            } else {
+                // console.log(result.user);
+                toast.success('Successfully logged in');
+                navigate('/');
+            }
+        } catch (error) {
+            setLoginLoading(false);
+            toast.error(`${error.message}`);
+        } finally {
+            setLoginLoading(false);
+        }
     }
     return (
         <div className='h-screen'>

@@ -7,13 +7,14 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import logo from "../../assets/easy-chat-logo.jpg"
 import { useState } from "react";
+import Swal from "sweetalert2";
 const Register = () => {
 
     const [registerLoading, setRegisterLoading] = useState(false);
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate()
 
-    const { createUser, updateUserProfile, logOut } = useAuth()
+    const { createUser, updateUserProfile, logOut, verifyEmail } = useAuth()
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
@@ -39,8 +40,9 @@ const Register = () => {
         setRegisterLoading(true);
         createUser(data.email, data.password)
             .then(result => {
-                console.log(result.user);
-                updateUserProfile(data.name, null)
+                console.log(result?.user);
+                updateUserProfile(data?.name, null)
+                verifyEmail(result?.user)
 
                 const user = {
                     name: data?.name,
@@ -55,9 +57,21 @@ const Register = () => {
                 saveUserInfoDataBase(user);
                 logOut()
                 setRegisterLoading(false);
-                toast.success('User Created Successfully')
+                Swal.fire({
+                    title: "Verify Your Email!",
+                    text: "A verification email has been sent to your email address. Please check your inbox and click on the verification link to complete the registration process.",
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Go to Login"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate('/login')
+                    }
+                });
 
-                navigate('/login')
+                // toast.success('User Created Successfully')
+
+                // navigate('/login')
 
             })
             .catch(error => {
