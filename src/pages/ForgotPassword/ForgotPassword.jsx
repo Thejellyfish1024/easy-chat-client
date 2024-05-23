@@ -1,14 +1,38 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useForm } from "react-hook-form";
 import logo from "../../assets/easy-chat-logo.jpg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ForgotPassword = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const { forgotPassword } = useAuth();
+    const navigate = useNavigate();
 
 
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
+        const email = data?.email;
+        try {
+            forgotPassword(email)
+                .then(() => {
+                    Swal.fire({
+                        title: "Sent!",
+                        text: "A password reset email has been sent to your given email address!",
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Go to Login"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate('/login')
+                        }
+                    });
+                })
+        } catch (error) {
+            toast.error(`${error.message}`);
+        }
     }
 
     return (
