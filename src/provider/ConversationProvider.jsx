@@ -15,12 +15,12 @@ const ConversationProvider = ({ children }) => {
     const [activeChat, setActiveChat] = useState("");
     const [myContacts, setMyContacts] = useState([]);
     const { user } = useAuth();
-    const { data } = useUser(user?.email);
+    const { data , refetch: userDataRefetch} = useUser(user?.email);
     const { refetch } = useSpecificChats(activeChat);
 
-    const socket = useMemo(() => io("https://easy-chat-server-2jt6.onrender.com", { withCredentials: true, }),
-        []
-    );
+    // const socket = useMemo(() => io("https://easy-chat-server-2jt6.onrender.com", { withCredentials: true, }),
+    //     []
+    // );
 
     // const socket = useMemo(() => {
     //     return io("https://easy-chat-server.vercel.app", {
@@ -31,9 +31,9 @@ const ConversationProvider = ({ children }) => {
     //     });
     // }, []);
     
-    // const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
-    //     []
-    // );
+    const socket = useMemo(() => io("http://localhost:5000", { withCredentials: true, }),
+        []
+    );
 
     // useEffect(() => {
     // 	if (user) {
@@ -60,6 +60,8 @@ const ConversationProvider = ({ children }) => {
             console.log(data);
             if (data?.refetch) {
                 refetch();
+                const sound = new Audio(notificationSound);
+                sound.play();
             }
 
         });
@@ -69,9 +71,7 @@ const ConversationProvider = ({ children }) => {
         socket?.on("getRequest", data => {
             console.log(data);
             if (data?.refetch) {
-                refetch();
-                const sound = new Audio(notificationSound);
-                sound.play();
+                userDataRefetch(); 
             }
 
         });
