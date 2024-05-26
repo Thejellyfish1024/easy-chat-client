@@ -60,6 +60,16 @@ const ConversationProvider = ({ children }) => {
             console.log(data);
             if (data?.refetch) {
                 refetch();
+            }
+
+        });
+    }, [socket]);
+
+    useEffect(() => {
+        socket?.on("getRequest", data => {
+            console.log(data);
+            if (data?.refetch) {
+                refetch();
                 const sound = new Audio(notificationSound);
                 sound.play();
             }
