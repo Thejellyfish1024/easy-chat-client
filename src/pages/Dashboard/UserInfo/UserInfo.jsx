@@ -10,11 +10,7 @@ import useUser from "../../../hooks/useUser";
 import { useEffect, useRef, useState } from "react";
 import CommonUpdateField from "./CommonUpdateField";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
-
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const { logOut, user } = useAuth();
@@ -28,7 +24,6 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     const modalRef = useRef(null);
     const inputFile = useRef(null);
     const axiosSecure = useAxiosSecure();
-    const axiosPublic = useAxiosPublic();
 
     const handleLogOut = () => {
         console.log("out");
@@ -80,29 +75,22 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
     }, [openUserInfo]);
 
 
-    const handleUpdateImage = async() => {
-        // `current` points to the mounted file input element
+    const handleUpdateImage = async () => {
         inputFile.current.click();
         const imgFile = inputFile.current.files[0];
 
-        // console.log('img file', imgFile);
         if (imgFile) {
-            const imageFile = { image: imgFile };
-            const res = await axiosPublic.post(image_hosting_api, imageFile, {
-                headers: {
-                    "content-type": "multipart/form-data",
-                },
-            });
-            const image = res?.data?.data?.url;
-            // console.log(image);
-            const { data } = await axiosSecure.put(`/users/update-user/${user?.email}`, { image });
-            // console.log('image update', data);
+            const formData = new FormData();
+            formData.append('image', imgFile);
+            const { data } = await axiosSecure.put(`/users/update-user/${user?.email}`, formData);
+            // console.log(data);
 
             if (data?.update) {
                 refetch();
                 toast.success('Profile updated');
             }
         }
+
     };
 
     return (
@@ -148,7 +136,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                         <CommonUpdateField
                             modalRef={modalRef}
                             inputRef={nameRef}
-                            field = "name"
+                            field="name"
                             setEditInfo={setEditUserName}
                             defaultValue={userData?.name}
                         >
@@ -170,7 +158,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                             <CommonUpdateField
                                 modalRef={modalRef}
                                 inputRef={aboutRef}
-                                field = "about"
+                                field="about"
                                 setEditInfo={setEditAbout}
                                 defaultValue={userData?.about}
                             >
@@ -199,7 +187,7 @@ const UserInfo = ({ openUserInfo, setOpenUserInfo }) => {
                             <CommonUpdateField
                                 modalRef={modalRef}
                                 inputRef={phoneRef}
-                                field = "phone"
+                                field="phone"
                                 setEditInfo={setEditNumber}
                                 defaultValue={userData?.phone}
                             >
